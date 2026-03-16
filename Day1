@@ -1,0 +1,258 @@
+Today we will learn 2 core concepts that every C++ program is built on.
+
+1️⃣ How a C++ program actually runs
+2️⃣ Variables – How computers store information
+
+If you understand these deeply, everything later (loops, pointers, OOP) will become easy.
+
+Concept 1 — How a C++ Program Actually Runs
+
+Most students think:
+
+"I write code → computer runs it"
+
+But internally 4 steps happen.
+
+Step-by-Step Flow
+Your Code → Compiler → Machine Code → CPU → Output
+
+Let’s understand with a real-world mental model.
+
+Real World Example
+
+Imagine you go to Japan and only know English.
+
+You speak English → translator converts → Japanese person understands.
+
+Same thing happens in programming.
+
+Human	Translator	Computer
+C++ Code	Compiler	Machine Code
+
+So the compiler translates:
+
+cout << "Hello";
+
+into something like
+
+101010101010
+
+because computers only understand binary.
+
+Example Program
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "Hello World";
+    return 0;
+}
+
+When you run this program:
+
+Hello World
+
+appears on the screen.
+
+But internally:
+
+You write code
+
+Compiler converts to machine code
+
+CPU executes instructions
+
+Output appears
+
+Why main() Exists
+
+Every C++ program must start somewhere.
+
+C++ chooses:
+
+main()
+
+Think of it like the main entrance of a building.
+
+No entrance → nobody can enter.
+
+No main() → program cannot start.
+
+Connection to What You Already Know
+
+Since you know Java, compare:
+
+Java:
+
+public static void main()
+
+C++:
+
+int main()
+
+Both mean the same thing.
+
+They are the starting point of the program.
+
+How to Remember This Forever
+
+Think of a restaurant process.
+
+Customer order → chef cooks → food served
+
+Similarly:
+
+Code → Compiler → CPU → Output
+Concept 2 — Variables (Computer Memory Boxes)
+
+Now the most important idea in programming.
+
+What is a Variable?
+
+A variable is a container that stores data in memory.
+
+Think of it like a labeled box.
+
+Example:
+
+Age Box → 21
+Marks Box → 90
+Name Box → Akshay
+
+The label is the variable name.
+
+Example in C++
+int age = 21;
+
+This means:
+
+Create a box called age
+Store value 21 in it
+
+Memory looks like this internally:
+
+age → 21
+Another Example
+int apples = 5;
+
+Meaning:
+
+apples → 5
+Real World Example
+
+Imagine a college database.
+
+Student Name	Age
+Akshay	21
+
+Inside the computer it is stored using variables.
+
+string name = "Akshay";
+int age = 21;
+Why Variables Exist
+
+Without variables, programs cannot remember anything.
+
+Example ATM:
+
+balance = 5000
+withdraw = 1000
+new_balance = 4000
+
+Variables store these values.
+
+How Computer Stores Variables
+
+Computer memory is like many tiny boxes.
+
+Memory
+-------------
+| age = 21 |
+| marks = 90 |
+| x = 10 |
+-------------
+
+Each variable occupies a specific memory location.
+
+Why This Matters for Placements
+
+Understanding variables helps you understand:
+
+memory
+
+pointers
+
+data structures
+
+algorithms
+
+Most students memorize syntax but don't understand memory thinking.
+
+Interviewers test this.
+
+Simple Program Example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int age = 21;
+
+    cout << age;
+
+    return 0;
+}
+
+Output:
+
+21
+
+Explanation:
+
+Create variable age
+
+Store 21
+
+cout prints it
+
+Mental Model (Never Forget)
+
+Think of variables as labeled containers.
+
+Variable Name → Stored Value
+
+Example:
+
+score → 95
+temperature → 30
+speed → 60
+Quick Placement Interview Questions
+
+Interviewers may ask:
+
+Q1: What is a variable?
+Answer:
+
+A variable is a named memory location used to store data that can be modified during program execution.
+
+Q2: Why do we need variables?
+
+Answer:
+
+Variables allow programs to store, update, and manipulate data during execution.
+
+Tiny Brain Exercise
+
+Predict the output:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int x = 10;
+    cout << x;
+}
+
+What will be printed?
