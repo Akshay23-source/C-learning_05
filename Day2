@@ -1,0 +1,264 @@
+Today we will learn 2 very important concepts that build on yesterday’s variables.
+
+1️⃣ Data Types (How the computer decides memory size)
+2️⃣ Taking Input using cin
+
+These are used in almost every program and coding test.
+
+Concept 1 — Data Types (How Memory Is Organized)
+
+Yesterday we learned:
+
+A variable is a box that stores data in memory.
+
+But the computer asks an important question:
+
+What kind of data will you store?
+
+Because storing an integer and storing a character are different.
+
+That is why data types exist.
+
+Simple Definition
+
+A data type tells the computer what kind of data a variable will store and how much memory it needs.
+
+Real-World Example
+
+Think of a storage warehouse.
+
+Different items need different boxes.
+
+Item	Box Type
+Books	Medium box
+Refrigerator	Big box
+Pencil	Small box
+
+Similarly in programming:
+
+Data	Data Type
+Whole numbers	int
+Decimal numbers	float
+Characters	char
+Text	string
+Common C++ Data Types
+Data Type	Used For	Example
+int	Whole numbers	10, 50
+float	Decimal numbers	3.14
+double	Large decimals	3.141592
+char	Single character	'A'
+string	Text	"Akshay"
+bool	True/False	true
+Example Program
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int age = 21;
+    float height = 5.8;
+    char grade = 'A';
+    
+    cout << age << endl;
+    cout << height << endl;
+    cout << grade << endl;
+
+    return 0;
+}
+
+Output:
+
+21
+5.8
+A
+What Happens in Memory
+
+Computer allocates different memory sizes.
+
+Data Type	Memory Size
+int	4 bytes
+float	4 bytes
+double	8 bytes
+char	1 byte
+
+Think of memory like different sized lockers.
+
+Memory
+--------------
+age     → 21
+height  → 5.8
+grade   → A
+--------------
+Why This Matters for Placements
+
+Interviewers often ask:
+
+Why not store everything as int?
+
+Because different data requires different storage and precision.
+
+Example:
+
+price = 99.99
+
+This cannot be stored in int.
+
+You need:
+
+float price = 99.99;
+Easy Trick to Remember
+
+Think:
+
+int → integer number
+float → floating decimal
+char → character
+string → sentence
+Concept 2 — Taking Input using cin
+
+Until now we printed output using:
+
+cout
+
+But real programs must take input from users.
+
+Example:
+
+ATM asks:
+
+Enter PIN
+Enter amount
+
+This is input.
+
+cin Meaning
+cin → character input
+
+It reads data from the keyboard.
+
+Basic Example
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int age;
+
+    cin >> age;
+
+    cout << age;
+
+    return 0;
+}
+What Happens Here
+
+Program waits for user input.
+
+Example run:
+
+Input:
+21
+
+Output:
+
+21
+
+Flow:
+
+User types value → cin stores it → variable holds value → cout prints
+Real-World Example
+
+Imagine a college form.
+
+Enter your age:
+Enter your marks:
+
+Program:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int age;
+    int marks;
+
+    cin >> age;
+    cin >> marks;
+
+    cout << age << endl;
+    cout << marks;
+
+    return 0;
+}
+
+Input:
+
+21
+90
+
+Output:
+
+21
+90
+Taking Multiple Inputs
+
+You can also do this:
+
+cin >> age >> marks;
+
+Example:
+
+21 90
+Mental Model (Never Forget)
+
+Think of data flow.
+
+Keyboard → cin → variable → cout → screen
+Why This Matters for Coding Tests
+
+Almost every coding problem follows this structure.
+
+Example:
+
+Take two numbers
+Add them
+Print result
+
+Program:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+
+    cin >> a >> b;
+
+    cout << a + b;
+
+    return 0;
+}
+Quick Interview Questions
+
+Q1: What is a data type?
+
+Answer:
+
+A data type defines the type of data a variable can store and the memory size allocated for it.
+
+Q2: Difference between cin and cout?
+
+cin	cout
+takes input	prints output
+Mini Brain Exercise
+
+Predict the output:
+
+int a = 10;
+int b = 5;
+
+cout << a + b;
+
+What will print?
