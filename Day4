@@ -1,0 +1,208 @@
+1️⃣ If-Else (Decision Making)
+Simple Idea
+
+👉 If-Else lets the program make decisions
+
+Real-World Example
+
+Think of this:
+
+If it is raining → take umbrella  
+Else → don’t take
+C++ Example
+int age = 18;
+
+if(age >= 18)
+{
+    cout << "Eligible to vote";
+}
+else
+{
+    cout << "Not eligible";
+}
+What Actually Happens
+
+Condition checked:
+
+age >= 18  → TRUE
+
+If TRUE → run if block
+
+Else → run else block
+
+Mental Model (Never Forget)
+IF → decision gate  
+Condition → key  
+
+Like a security gate:
+
+Valid ID → enter
+
+Invalid → reject
+
+Why It Works
+
+Because of boolean logic (true/false)
+
+Computer only understands:
+
+1 → true  
+0 → false
+Flow Visualization
+Condition check
+      ↓
+ TRUE      FALSE
+  ↓          ↓
+IF block   ELSE block
+Important Variations
+1. Only if
+if(x > 0)
+{
+    cout << "Positive";
+}
+2. Multiple conditions
+if(marks >= 90)
+    cout << "A";
+else if(marks >= 75)
+    cout << "B";
+else
+    cout << "C";
+Connection to Real Life
+
+Every decision you make:
+
+If hungry → eat  
+If tired → sleep  
+
+👉 Same logic in programming
+
+Common Mistake 🔥
+if(x = 5)  // ❌ wrong
+
+👉 This assigns value, not compares
+
+Correct:
+
+if(x == 5)  // ✅
+How to Remember
+
+Just think:
+
+IF = decision  
+ELSE = fallback
+2️⃣ Loops (Repeating Work)
+Simple Idea
+
+👉 Loop = repeat something multiple times
+
+Real-World Example
+Brush teeth daily  
+Attend class every day  
+
+👉 Repetition = loop
+
+1. for Loop (Most Used in Placements)
+for(int i = 1; i <= 5; i++)
+{
+    cout << i;
+}
+What Happens Step-by-Step
+i = 1 → print  
+i = 2 → print  
+i = 3 → print  
+i = 4 → print  
+i = 5 → print  
+stop
+Mental Model
+for loop = counter-controlled machine
+Structure Breakdown
+for(initialization; condition; update)
+Part	Meaning
+initialization	start point
+condition	when to stop
+update	how it moves
+Visual Flow
+Start → Check → Run → Update → Repeat
+2. while Loop
+int i = 1;
+
+while(i <= 5)
+{
+    cout << i;
+    i++;
+}
+Difference from for loop
+for	while
+when count is known	when count is unknown
+Real-Life Example
+While you are hungry → keep eating
+🔥 Important Concept: Infinite Loop
+while(true)
+{
+    cout << "Hello";
+}
+
+👉 Runs forever
+
+Why Loops Matter
+
+Without loop:
+
+cout << 1;
+cout << 2;
+cout << 3;
+
+With loop:
+
+for(int i=1; i<=3; i++)
+    cout << i;
+
+👉 Cleaner + scalable
+
+Connection to What You Know
+
+Math sequences:
+
+1, 2, 3, 4, 5
+
+👉 Generated using loop
+
+🔥 Mini Practice
+Q1:
+for(int i=1; i<=3; i++)
+{
+    cout << i;
+}
+
+👉 Output?
+
+Q2:
+int i=1;
+while(i<=3)
+{
+    cout << i;
+    i++;
+}
+
+👉 Output?
+
+🧠 Today’s Core Understanding
+1. If-Else
+
+Makes decisions
+
+Based on conditions
+
+2. Loops
+
+Repeat tasks
+
+Save time and code
+
+🚀 Placement Insight
+
+Almost every coding question uses:
+
+Loop + If-Else
+
+👉 This is the heart of problem solving
