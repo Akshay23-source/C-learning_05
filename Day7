@@ -1,0 +1,545 @@
+
+
+
+
+# 1️⃣ Call by Value vs Call by Reference
+
+This is one of the MOST IMPORTANT concepts in C++.
+
+---
+
+# First Understand the Big Idea
+
+When you pass a variable to a function:
+
+👉 Does the function get:
+
+* a **copy** of data?
+  OR
+* the **original variable itself**?
+
+That creates:
+
+* Call by Value
+* Call by Reference
+
+---
+
+# Part A — Call by Value
+
+---
+
+## Simple Idea
+
+👉 Function receives a **copy** of the variable.
+
+Original remains unchanged.
+
+---
+
+## Real-World Example
+
+Think of this:
+
+```text id="bxqklr"
+Original document → photocopy
+```
+
+If you write on photocopy:
+👉 Original does NOT change.
+
+---
+
+## Example
+
+```cpp id="26wzpr"
+#include <iostream>
+using namespace std;
+
+void change(int x)
+{
+    x = 100;
+}
+
+int main()
+{
+    int a = 10;
+
+    change(a);
+
+    cout << a;
+}
+```
+
+---
+
+## Output
+
+```text id="f65xw2"
+10
+```
+
+---
+
+## Why?
+
+Because:
+
+```text id="p6qj2u"
+change(a)
+```
+
+creates COPY:
+
+```text id="n1qjlwm"
+x = 10
+```
+
+Only copy changes.
+
+Original `a` stays same.
+
+---
+
+## Memory Visualization
+
+```text id="0ocgmf"
+a → 10
+
+Function call:
+x → 10   (separate copy)
+```
+
+Different memory locations.
+
+---
+
+## Mental Model
+
+```text id="4s0f8m"
+Call by Value = duplicate data
+```
+
+---
+
+# Part B — Call by Reference
+
+---
+
+## Simple Idea
+
+👉 Function gets DIRECT access to original variable.
+
+Changes affect original.
+
+---
+
+## Real-World Example
+
+Instead of photocopy:
+
+```text id="5ofn1t"
+You give original document itself
+```
+
+Now changes are permanent.
+
+---
+
+## Example
+
+```cpp id="0udom0"
+#include <iostream>
+using namespace std;
+
+void change(int &x)
+{
+    x = 100;
+}
+
+int main()
+{
+    int a = 10;
+
+    change(a);
+
+    cout << a;
+}
+```
+
+---
+
+## Output
+
+```text id="ws4s9y"
+100
+```
+
+---
+
+## Why?
+
+`&x` means:
+
+```text id="6rtn98"
+x is another name for a
+```
+
+No copy created.
+
+---
+
+## Memory Visualization
+
+```text id="a9i58q"
+a → 10
+
+x → same memory location
+```
+
+---
+
+## Mental Model (VERY IMPORTANT)
+
+```text id="y7fj9z"
+Reference = nickname for original variable
+```
+
+---
+
+# Key Difference
+
+| Call by Value                 | Call by Reference       |
+| ----------------------------- | ----------------------- |
+| copy sent                     | original sent           |
+| changes don’t affect original | changes affect original |
+| safer                         | faster                  |
+| more memory                   | less memory             |
+
+---
+
+# Why Reference is Useful
+
+Imagine huge data:
+
+```text id="r5avxf"
+100000 elements
+```
+
+Copying is expensive.
+
+Reference avoids copying.
+
+👉 Faster programs.
+
+---
+
+# Connection to Pointers
+
+Reference internally behaves similar to pointer.
+
+Both work with:
+
+* original memory
+* addresses
+
+---
+
+# How to Remember Forever
+
+```text id="nyj1h9"
+Value → copy
+Reference → real object
+```
+
+OR
+
+```text id="rfr5q4"
+Value = photocopy
+Reference = original paper
+```
+
+---
+
+# 2️⃣ Dynamic Memory Allocation (`new` and `delete`)
+
+This is where C++ becomes powerful 🔥
+
+---
+
+# First Understand the Problem
+
+Normal variables:
+
+```cpp id="z78d6x"
+int x;
+```
+
+are stored in:
+
+```text id="0tvv5g"
+STACK memory
+```
+
+Created automatically.
+Destroyed automatically.
+
+---
+
+## Problem
+
+What if size is decided at runtime?
+
+Example:
+
+```text id="x9uqkh"
+User enters number of students
+```
+
+We don’t know size beforehand.
+
+---
+
+# Solution → Dynamic Memory
+
+Memory created while program runs.
+
+---
+
+# Using `new`
+
+## Example
+
+```cpp id="7vjlwm"
+int* p = new int;
+```
+
+---
+
+## What Happens?
+
+1. Memory created in:
+
+```text id="j9r20v"
+HEAP memory
+```
+
+2. Address returned
+
+3. Pointer stores address
+
+---
+
+## Assign Value
+
+```cpp id="86mdv8"
+*p = 50;
+```
+
+---
+
+## Access Value
+
+```cpp id="1xbx84"
+cout << *p;
+```
+
+Output:
+
+```text id="uxmbtw"
+50
+```
+
+---
+
+# Memory Visualization
+
+```text id="h6w7ri"
+Heap:
+Address 200 → 50
+
+Pointer p → 200
+```
+
+---
+
+# Why Heap Memory Exists
+
+Stack memory is:
+
+* limited
+* automatic
+
+Heap memory gives:
+
+* flexibility
+* dynamic size
+
+---
+
+# VERY IMPORTANT — `delete`
+
+Memory in heap is NOT removed automatically.
+
+So:
+
+```cpp id="cz5f7h"
+delete p;
+```
+
+---
+
+# Why Delete Matters
+
+Without delete:
+
+```text id="z6jsao"
+Unused memory keeps occupying RAM
+```
+
+This is called:
+
+# 🔥 Memory Leak
+
+Very important interview topic.
+
+---
+
+# Mental Model
+
+```text id="1pyqqh"
+new → rent memory
+delete → return memory
+```
+
+---
+
+# Dynamic Array Example
+
+```cpp id="g34x9g"
+int n;
+cin >> n;
+
+int* arr = new int[n];
+```
+
+Now array size depends on user input.
+
+---
+
+# Connection to What You Already Know
+
+Static array:
+
+```cpp id="0u58rv"
+int arr[5];
+```
+
+Fixed size ❌
+
+Dynamic array:
+
+```cpp id="g7dy9s"
+new int[n];
+```
+
+Flexible ✅
+
+---
+
+# Common Mistake 🔥
+
+```cpp id="0x7j3g"
+delete p;
+cout << *p;   // ❌ dangerous
+```
+
+Why?
+
+Memory already deleted.
+
+Pointer now points to invalid memory.
+
+Called:
+
+# Dangling Pointer
+
+---
+
+# How to Remember Forever
+
+```text id="bhnjlwm"
+new → create memory
+delete → destroy memory
+```
+
+---
+
+# 🔥 Mini Practice
+
+## Q1
+
+```cpp id="rv1kqv"
+void fun(int x)
+{
+    x = 20;
+}
+
+int a = 10;
+fun(a);
+
+cout << a;
+```
+
+👉 Output?
+
+---
+
+## Q2
+
+```cpp id="yjlwm4"
+int* p = new int;
+*p = 25;
+
+cout << *p;
+```
+
+👉 Output?
+
+---
+
+# 🧠 Today’s Core Understanding
+
+## 1. Call by Value
+
+* copy sent
+* original unchanged
+
+## 2. Call by Reference
+
+* original variable used
+* changes permanent
+
+## 3. Dynamic Memory
+
+* runtime memory creation
+* heap memory
+* manual control
+
+---
+
+# 🚀 Placement Insight 🔥
+
+These concepts are heavily used in:
+
+* linked lists
+* trees
+* STL internals
+* object-oriented programming
+* system-level coding
+
+👉 Understanding memory deeply gives HUGE advantage in interviews.
+
+---
+
+
