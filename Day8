@@ -1,0 +1,534 @@
+Excellent 🔥
+Today we enter the world of **Object-Oriented Programming (OOP)** — one of the MOST ASKED areas in placements.
+
+Almost every company asks:
+
+* What is OOP?
+* Difference between class and struct?
+* Why encapsulation?
+* Real-world examples?
+
+Today you’ll understand them deeply instead of memorizing definitions.
+
+---
+
+
+
+# 1️⃣ `struct` vs `class`
+
+Before understanding OOP, first understand this:
+
+👉 Programs deal with **real-world entities**.
+
+Examples:
+
+* Student
+* Car
+* Bank Account
+
+Each entity has:
+
+* data
+* behavior
+
+---
+
+# Problem Before OOP
+
+Imagine storing student data:
+
+```cpp id="5gaw6s"
+string name1;
+int age1;
+float marks1;
+
+string name2;
+int age2;
+float marks2;
+```
+
+Messy ❌
+
+Hard to manage.
+
+---
+
+# Solution → Group Related Data
+
+That’s why `struct` and `class` exist.
+
+---
+
+# Part A — Structure (`struct`)
+
+---
+
+## Simple Idea
+
+👉 `struct` groups related data together.
+
+---
+
+## Real-World Example
+
+Think of a student form:
+
+```text id="jlwmw5"
+Name
+Age
+Marks
+```
+
+All belong to ONE student.
+
+---
+
+## Example
+
+```cpp id="9a9a7x"
+#include <iostream>
+using namespace std;
+
+struct Student
+{
+    string name;
+    int age;
+    float marks;
+};
+
+int main()
+{
+    Student s1;
+
+    s1.name = "Akshay";
+    s1.age = 20;
+    s1.marks = 85.5;
+
+    cout << s1.name;
+}
+```
+
+---
+
+# What Actually Happens
+
+`Student` becomes a custom data type.
+
+Like:
+
+```cpp id="o9lk3u"
+int
+float
+char
+```
+
+Now additionally:
+
+```cpp id="5ph2cy"
+Student
+```
+
+---
+
+# Mental Model
+
+```text id="v20xyc"
+struct = blueprint for related data
+```
+
+---
+
+# Why Struct Exists
+
+Instead of separate variables:
+
+```text id="ns2rqq"
+name, age, marks
+```
+
+We create ONE logical unit:
+
+```text id="ukq1r0"
+Student
+```
+
+---
+
+# Part B — Class (`class`)
+
+Now comes the powerful version.
+
+---
+
+## Simple Idea
+
+👉 Class = data + functions together
+
+---
+
+## Real-World Example
+
+Think of a car:
+
+### Data:
+
+```text id="zq8zqv"
+speed
+color
+fuel
+```
+
+### Functions:
+
+```text id="qymf4f"
+start()
+brake()
+accelerate()
+```
+
+---
+
+# Example
+
+```cpp id="1j3k44"
+class Car
+{
+public:
+
+    string color;
+
+    void start()
+    {
+        cout << "Car Started";
+    }
+};
+```
+
+---
+
+# What Makes Class Powerful?
+
+Now data and behavior stay together.
+
+This is how real-world systems are built.
+
+---
+
+# Main Difference: `struct` vs `class`
+
+| struct               | class             |
+| -------------------- | ----------------- |
+| default public       | default private   |
+| mainly data grouping | full OOP features |
+| simpler              | more secure       |
+
+---
+
+# IMPORTANT 🔥
+
+In C++:
+
+```text id="x7q6ur"
+struct and class are almost same
+```
+
+Only default access changes.
+
+---
+
+# Mental Model (Never Forget)
+
+```text id="m25ru2"
+struct → simple container
+class → smart object
+```
+
+---
+
+# Connection to Real Life
+
+Everything around you is an object:
+
+* phone
+* bike
+* ATM
+
+Each has:
+
+* properties
+* actions
+
+That’s exactly OOP.
+
+---
+
+# 2️⃣ OOP Basics — Encapsulation & Abstraction
+
+These are VERY frequently asked in interviews.
+
+---
+
+# First Understand the Big Idea
+
+OOP tries to model real-world systems.
+
+Main goals:
+
+* security
+* organization
+* simplicity
+
+---
+
+# A. Encapsulation
+
+---
+
+## Simple Idea
+
+👉 Wrapping data + functions together.
+
+AND
+
+👉 Hiding data from direct misuse.
+
+---
+
+## Real-World Example
+
+ATM machine.
+
+You can:
+
+* withdraw money
+* check balance
+
+But you CANNOT directly access:
+
+```text id="0w5v4d"
+bank database
+```
+
+Hidden internally.
+
+---
+
+# Example
+
+```cpp id="7e84ui"
+class Bank
+{
+private:
+    int balance = 5000;
+
+public:
+
+    void showBalance()
+    {
+        cout << balance;
+    }
+};
+```
+
+---
+
+# What Happens?
+
+`balance` is hidden using:
+
+```cpp id="q0v46z"
+private
+```
+
+Access only through functions.
+
+---
+
+# Why Encapsulation Matters
+
+Without it:
+
+```cpp id="ylryg0"
+balance = -100000;
+```
+
+Invalid data ❌
+
+Encapsulation protects data.
+
+---
+
+# Mental Model
+
+```text id="jjlwmu"
+Capsule → data protected inside
+```
+
+---
+
+# How to Remember
+
+```text id="nlz4y3"
+Encapsulation = data hiding + control
+```
+
+---
+
+# B. Abstraction
+
+---
+
+## Simple Idea
+
+👉 Show only important things.
+Hide complex implementation.
+
+---
+
+## Real-World Example
+
+Driving a car.
+
+You know:
+
+* steering
+* brake
+* accelerator
+
+But not:
+
+* engine internals
+* combustion system
+
+Hidden complexity.
+
+---
+
+# Example
+
+```cpp id="4khvse"
+class Car
+{
+public:
+
+    void start()
+    {
+        cout << "Car Started";
+    }
+};
+```
+
+User only calls:
+
+```cpp id="jlwm7m"
+start()
+```
+
+Internal complexity hidden.
+
+---
+
+# Why Abstraction Matters
+
+Without abstraction:
+
+* systems become too complex
+
+With abstraction:
+
+* easier to use
+
+---
+
+# Mental Model
+
+```text id="xmsjlwm"
+Abstraction = hide complexity
+```
+
+---
+
+# Difference Between Encapsulation & Abstraction
+
+| Encapsulation                   | Abstraction           |
+| ------------------------------- | --------------------- |
+| protects data                   | hides complexity      |
+| security focus                  | simplicity focus      |
+| achieved using access modifiers | achieved using design |
+
+---
+
+# 🔥 Mini Practice
+
+## Q1
+
+```cpp id="lbjlwm"
+struct Student
+{
+    int age;
+};
+
+Student s;
+s.age = 20;
+
+cout << s.age;
+```
+
+👉 Output?
+
+---
+
+## Q2
+
+```cpp id="jlwmmx"
+class Test
+{
+private:
+    int x = 10;
+};
+```
+
+Can `x` be accessed directly outside class?
+
+👉 Yes or No?
+
+---
+
+# 🧠 Today’s Core Understanding
+
+## 1. Struct
+
+* groups related data
+
+## 2. Class
+
+* data + functions together
+
+## 3. Encapsulation
+
+* protect data
+
+## 4. Abstraction
+
+* hide complexity
+
+---
+
+# 🚀 Placement Insight 🔥
+
+OOP is one of the MOST ASKED topics in:
+
+* HR interviews
+* technical interviews
+* coding rounds
+
+Very common questions:
+
+* Difference between struct and class?
+* Why encapsulation?
+* Real-life examples of abstraction?
+
+Now you understand the WHY, not just definitions.
+
+---
+
