@@ -1,0 +1,558 @@
+
+
+Today’s concepts:
+1️⃣ Constructor & Destructor
+2️⃣ Inheritance
+
+---
+
+# 📅 Day 9 – C++ Fundamentals
+
+# 1️⃣ Constructor & Destructor
+
+Before learning definitions, first understand the PROBLEM.
+
+---
+
+# Problem Without Constructor
+
+Imagine creating a student object:
+
+```cpp id="mw5fmb"
+class Student
+{
+public:
+    string name;
+    int age;
+};
+```
+
+Now:
+
+```cpp id="1owpru"
+Student s1;
+```
+
+Problem:
+
+```text id="pjlwm9"
+name → garbage/empty
+age → garbage value
+```
+
+We want automatic initialization.
+
+---
+
+# Solution → Constructor
+
+---
+
+# What is a Constructor?
+
+👉 Special function that runs automatically when object is created.
+
+---
+
+# Real-World Example
+
+Think of buying a phone.
+
+The moment phone starts:
+
+* memory initialized
+* system loaded
+* apps prepared
+
+Automatic setup.
+
+That’s constructor behavior.
+
+---
+
+# Example
+
+```cpp id="jlwmg6"
+class Student
+{
+public:
+
+    string name;
+
+    Student()
+    {
+        name = "Akshay";
+    }
+};
+```
+
+---
+
+# What Happens?
+
+When:
+
+```cpp id="i0j33l"
+Student s1;
+```
+
+is created:
+
+Constructor runs automatically.
+
+---
+
+# Output
+
+```cpp id="u4llf5"
+cout << s1.name;
+```
+
+👉
+
+```text id="jlwm4l"
+Akshay
+```
+
+---
+
+# Why Constructor Exists
+
+To:
+
+* initialize objects
+* avoid garbage values
+* automate setup
+
+---
+
+# Mental Model (Never Forget)
+
+```text id="jlwm34"
+Constructor = automatic setup function
+```
+
+---
+
+# Important Properties
+
+| Property           | Meaning                |
+| ------------------ | ---------------------- |
+| same name as class | mandatory              |
+| no return type     | not even void          |
+| runs automatically | during object creation |
+
+---
+
+# Parameterized Constructor
+
+---
+
+## Example
+
+```cpp id="yjlwmn"
+class Student
+{
+public:
+
+    string name;
+
+    Student(string n)
+    {
+        name = n;
+    }
+};
+```
+
+Usage:
+
+```cpp id="jlwmq3"
+Student s1("Akshay");
+```
+
+---
+
+# Why Useful?
+
+Different objects can have different values.
+
+---
+
+# Real-World Analogy
+
+```text id="jlwmf2"
+Car(color)
+Phone(model)
+Student(name)
+```
+
+---
+
+# Destructor
+
+Now opposite concept.
+
+---
+
+# What is Destructor?
+
+👉 Special function that runs automatically when object is destroyed.
+
+---
+
+# Real-World Example
+
+When leaving hotel room:
+
+* lights off
+* resources cleaned
+* room freed
+
+Cleanup process.
+
+---
+
+# Example
+
+```cpp id="jlwmu8"
+class Test
+{
+public:
+
+    ~Test()
+    {
+        cout << "Object Destroyed";
+    }
+};
+```
+
+---
+
+# Symbol Meaning
+
+```cpp id="jlwm1s"
+~
+```
+
+called:
+
+```text id="jlwmcx"
+tilde
+```
+
+---
+
+# Why Destructor Exists
+
+To:
+
+* release memory
+* close files
+* clean resources
+
+Very important in large systems.
+
+---
+
+# Mental Model
+
+```text id="jlwm0v"
+Constructor → setup
+Destructor → cleanup
+```
+
+---
+
+# Constructor vs Destructor
+
+| Constructor         | Destructor       |
+| ------------------- | ---------------- |
+| creates/setup       | destroys/cleanup |
+| automatic           | automatic        |
+| same name           | ~className       |
+| can have parameters | no parameters    |
+
+---
+
+# 2️⃣ Inheritance (🔥 MOST IMPORTANT OOP TOPIC)
+
+This is one of the MOST ASKED placement questions.
+
+---
+
+# First Understand the Problem
+
+Suppose:
+
+```text id="jlwmle"
+Car
+Bike
+Truck
+```
+
+All have:
+
+* speed
+* start()
+* stop()
+
+Why rewrite same code again and again?
+
+---
+
+# Solution → Inheritance
+
+---
+
+# Simple Idea
+
+👉 One class can reuse properties/functions of another class.
+
+---
+
+# Real-World Example
+
+Child inherits:
+
+* surname
+* properties
+* features
+
+from parents.
+
+Same idea in programming.
+
+---
+
+# Example
+
+```cpp id="jlwm0m"
+class Vehicle
+{
+public:
+
+    void start()
+    {
+        cout << "Vehicle Started";
+    }
+};
+
+class Car : public Vehicle
+{
+};
+```
+
+---
+
+# What Happens?
+
+`Car` automatically gets:
+
+```text id="8jlwmn"
+start()
+```
+
+from `Vehicle`.
+
+---
+
+# Usage
+
+```cpp id="jlwmu9"
+Car c;
+c.start();
+```
+
+---
+
+# Why Inheritance Exists
+
+To:
+
+* avoid duplicate code
+* improve reusability
+* create hierarchy
+
+---
+
+# Mental Model (VERY IMPORTANT)
+
+```text id="9jlwmq"
+Parent class → common features
+Child class → specialized version
+```
+
+---
+
+# Terminology
+
+| Term          | Meaning |
+| ------------- | ------- |
+| Base Class    | Parent  |
+| Derived Class | Child   |
+
+---
+
+# Visualization
+
+```text id="jlwm9f"
+Vehicle
+   ↓
+Car
+```
+
+---
+
+# Types of Inheritance
+
+---
+
+## 1. Single Inheritance
+
+```text id="8jlwmx"
+A → B
+```
+
+---
+
+## 2. Multilevel Inheritance
+
+```text id="jlwm5v"
+A → B → C
+```
+
+Like:
+
+```text id="qjlwmz"
+Grandparent → Parent → Child
+```
+
+---
+
+## 3. Multiple Inheritance
+
+```text id="jlwm0x"
+A + B → C
+```
+
+Child inherits from multiple parents.
+
+---
+
+# Why Interviewers Love Inheritance
+
+Because it tests:
+
+* OOP understanding
+* hierarchy thinking
+* software design
+
+---
+
+# Common Mistake 🔥
+
+Private members are NOT directly accessible in derived class.
+
+---
+
+# Example
+
+```cpp id="7jlwmh"
+class A
+{
+private:
+    int x;
+};
+```
+
+Derived class cannot directly use `x`.
+
+---
+
+# How to Remember Forever
+
+```text id="2jlwmr"
+Inheritance = reuse existing code
+```
+
+OR
+
+```text id="rjlwmw"
+Child gets features from parent
+```
+
+---
+
+# 🔥 Mini Practice
+
+## Q1
+
+```cpp id="ljlwmx"
+class A
+{
+public:
+    A()
+    {
+        cout << "Constructor";
+    }
+};
+
+A obj;
+```
+
+👉 Output?
+
+---
+
+## Q2
+
+```cpp id="jjlwm5"
+class Animal
+{
+public:
+    void sound()
+    {
+        cout << "Animal Sound";
+    }
+};
+
+class Dog : public Animal
+{
+};
+
+Dog d;
+d.sound();
+```
+
+👉 Output?
+
+---
+
+# 🧠 Today’s Core Understanding
+
+## 1. Constructor
+
+* automatic setup
+
+## 2. Destructor
+
+* automatic cleanup
+
+## 3. Inheritance
+
+* reuse parent features
+
+---
+
+# 🚀 Placement Insight 🔥
+
+VERY common interview questions:
+
+* Why constructor has no return type?
+* Constructor vs Destructor?
+* Real-life example of inheritance?
+* Why inheritance is useful?
+
+These are core OOP interview topics.
+
+
