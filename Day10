@@ -1,0 +1,516 @@
+Excellent 🔥
+Today you’re learning one of the MOST IMPORTANT and MOST ASKED OOP concepts in placements:
+
+# ⭐ Polymorphism
+
+This topic separates:
+
+* people who memorize OOP ❌
+  from
+* people who truly understand software design ✅
+
+---
+
+# 📅 Day 10 – C++ Fundamentals
+
+# 1️⃣ Polymorphism (One Thing, Many Forms)
+
+---
+
+# First Understand the Big Idea
+
+The word:
+
+```text id="i5m0ha"
+Poly = many
+Morph = forms
+```
+
+So:
+
+# Polymorphism means:
+
+👉 Same function behaves differently in different situations.
+
+---
+
+# Real-World Example
+
+Think of this word:
+
+```text id="g8yq0m"
+“Run”
+```
+
+Different meanings:
+
+* Human runs
+* Car runs
+* Machine runs
+
+Same word → different behavior.
+
+That’s polymorphism.
+
+---
+
+# Why Polymorphism Exists
+
+Without it:
+
+```text id="qjlwm7"
+dogSound()
+catSound()
+birdSound()
+```
+
+Too many separate functions ❌
+
+With polymorphism:
+
+```text id="jlwmc2"
+sound()
+```
+
+One interface, different behavior ✅
+
+---
+
+# Types of Polymorphism
+
+| Type         | When                       |
+| ------------ | -------------------------- |
+| Compile-time | decided during compilation |
+| Run-time     | decided during execution   |
+
+---
+
+# Part A — Compile-Time Polymorphism
+
+Achieved using:
+
+# ⭐ Function Overloading
+
+---
+
+# Function Overloading
+
+---
+
+## Simple Idea
+
+👉 Same function name with different parameters.
+
+---
+
+# Example
+
+```cpp id="0jlwm7"
+class Math
+{
+public:
+
+    int add(int a, int b)
+    {
+        return a + b;
+    }
+
+    int add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+};
+```
+
+---
+
+# What Happens?
+
+Compiler checks:
+
+```text id="wjlwm1"
+How many arguments?
+What type?
+```
+
+Then chooses correct function.
+
+---
+
+# Mental Model
+
+```text id="sjlwm8"
+Same worker → different jobs depending on input
+```
+
+---
+
+# Real-World Example
+
+Phone camera app:
+
+```text id="fjlwm2"
+Photo()
+Photo(filter)
+Photo(filter, brightness)
+```
+
+Same action, different versions.
+
+---
+
+# Why It Works
+
+Because function signatures differ:
+
+```text id="6jlwmf"
+name + parameters
+```
+
+---
+
+# Common Mistake 🔥
+
+Only changing return type is NOT overloading.
+
+❌ Wrong:
+
+```cpp id="2jlwmv"
+int fun()
+float fun()
+```
+
+Compiler gets confused.
+
+---
+
+# How to Remember
+
+```text id="tjlwm5"
+Overloading = same name, different inputs
+```
+
+---
+
+# Part B — Run-Time Polymorphism
+
+Achieved using:
+
+# ⭐ Function Overriding + Virtual Functions
+
+This is VERY IMPORTANT for interviews.
+
+---
+
+# Function Overriding
+
+---
+
+## Simple Idea
+
+👉 Child class changes parent class function behavior.
+
+---
+
+# Example
+
+```cpp id="hjlwm9"
+class Animal
+{
+public:
+
+    void sound()
+    {
+        cout << "Animal Sound";
+    }
+};
+
+class Dog : public Animal
+{
+public:
+
+    void sound()
+    {
+        cout << "Bark";
+    }
+};
+```
+
+---
+
+# What Happens?
+
+Dog provides its OWN version of:
+
+```text id="qjlwm3"
+sound()
+```
+
+---
+
+# Mental Model
+
+```text id="h7lm0p"
+Parent gives general behavior
+Child customizes it
+```
+
+---
+
+# Real-World Example
+
+Vehicle:
+
+```text id="z0lwm2"
+Vehicle start()
+```
+
+Different implementations:
+
+* Bike start
+* Car start
+* Bus start
+
+---
+
+# Problem Without Virtual Function
+
+Now VERY IMPORTANT concept.
+
+---
+
+# Example
+
+```cpp id="9jlwm8"
+Animal* ptr;
+Dog d;
+
+ptr = &d;
+
+ptr->sound();
+```
+
+Without `virtual`:
+
+Output:
+
+```text id="jlwmz1"
+Animal Sound
+```
+
+NOT Bark.
+
+Why?
+
+Because compiler checks pointer type:
+
+```text id="2jlwm0"
+Animal*
+```
+
+---
+
+# Solution → Virtual Function
+
+---
+
+# Example
+
+```cpp id="4jlwmf"
+class Animal
+{
+public:
+
+    virtual void sound()
+    {
+        cout << "Animal Sound";
+    }
+};
+```
+
+Now output becomes:
+
+```text id="jlwmu5"
+Bark
+```
+
+---
+
+# Why Virtual Works
+
+With virtual:
+
+👉 Decision delayed until runtime.
+
+Computer checks:
+
+```text id="mjlwm9"
+actual object type
+```
+
+not pointer type.
+
+---
+
+# Mental Model (VERY IMPORTANT)
+
+```text id="jlwm6r"
+virtual = decide later at runtime
+```
+
+---
+
+# Visualization
+
+Without virtual:
+
+```text id="9jlwmk"
+Pointer type decides
+```
+
+With virtual:
+
+```text id="jlwm4z"
+Actual object decides
+```
+
+---
+
+# Why Virtual Functions Matter
+
+They enable:
+
+* flexibility
+* dynamic behavior
+* real-world software architecture
+
+Used heavily in:
+
+* game engines
+* UI systems
+* frameworks
+
+---
+
+# Key Difference
+
+| Overloading          | Overriding           |
+| -------------------- | -------------------- |
+| same class           | parent-child classes |
+| compile time         | runtime              |
+| different parameters | same parameters      |
+
+---
+
+# Common Interview Question 🔥
+
+# Why Use Virtual Function?
+
+Answer:
+
+```text id="jjlwm2"
+To achieve runtime polymorphism.
+```
+
+---
+
+# How to Remember Forever
+
+```text id="jlwm3m"
+Overloading → same name, different inputs
+Overriding → same function, different behavior
+Virtual → runtime decision
+```
+
+---
+
+# 🔥 Mini Practice
+
+## Q1
+
+```cpp id="5jlwmv"
+class Test
+{
+public:
+
+    void fun()
+    {
+        cout << "A";
+    }
+
+    void fun(int x)
+    {
+        cout << "B";
+    }
+};
+```
+
+What concept?
+
+---
+
+## Q2
+
+```cpp id="1jlwm8"
+class Animal
+{
+public:
+    virtual void sound()
+    {
+        cout << "Animal";
+    }
+};
+
+class Dog : public Animal
+{
+public:
+    void sound()
+    {
+        cout << "Dog";
+    }
+};
+
+Animal* ptr = new Dog();
+
+ptr->sound();
+```
+
+👉 Output?
+
+---
+
+# 🧠 Today’s Core Understanding
+
+## 1. Polymorphism
+
+* one interface, multiple behaviors
+
+## 2. Function Overloading
+
+* compile-time polymorphism
+
+## 3. Function Overriding
+
+* child changes parent behavior
+
+## 4. Virtual Functions
+
+* runtime decision making
+
+---
+
+# 🚀 Placement Insight 🔥
+
+VERY frequently asked:
+
+* Difference between overloading and overriding?
+* Why virtual function?
+* What is runtime polymorphism?
+* Real-life example of polymorphism?
+
+These are TOP placement interview questions.
+
+---
+
+Next time type:
+
