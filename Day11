@@ -1,0 +1,682 @@
+
+
+From today, we start learning things that are directly useful in:
+
+* Coding rounds
+* Online assessments
+* DSA preparation
+* Technical interviews
+
+Today's topics:
+
+1️⃣ STL Basics (vector, pair, stack, queue)
+2️⃣ Time Complexity (VERY IMPORTANT)
+
+---
+
+# 1️⃣ STL Basics (Standard Template Library)
+
+---
+
+# First Understand Why STL Exists
+
+Imagine you need:
+
+* Dynamic arrays
+* Stacks
+* Queues
+* Sorting
+
+You could build everything from scratch.
+
+But that's like building your own bicycle every time you want to travel.
+
+❌ Waste of time
+
+So C++ provides ready-made, optimized tools.
+
+That's STL.
+
+---
+
+# Mental Model
+
+```text
+STL = Toolbox for Programmers
+```
+
+Just like an electrician carries tools,
+a programmer carries STL containers.
+
+---
+
+# A. Vector
+
+---
+
+## Problem with Arrays
+
+```cpp
+int arr[5];
+```
+
+Size is fixed.
+
+What if you need 6 elements?
+
+❌ Problem.
+
+---
+
+## Solution → Vector
+
+```cpp
+vector<int> v;
+```
+
+Vector can grow automatically.
+
+---
+
+## Example
+
+```cpp
+vector<int> v;
+
+v.push_back(10);
+v.push_back(20);
+v.push_back(30);
+```
+
+---
+
+### Memory Visualization
+
+Initially:
+
+```text
+10
+```
+
+Then:
+
+```text
+10 20
+```
+
+Then:
+
+```text
+10 20 30
+```
+
+Vector expands automatically.
+
+---
+
+## Access Elements
+
+```cpp
+cout << v[0];
+```
+
+Output:
+
+```text
+10
+```
+
+---
+
+## Useful Operations
+
+```cpp
+v.push_back(100);
+v.pop_back();
+
+v.size();
+```
+
+---
+
+## Mental Model
+
+```text
+Vector = Smart Array
+```
+
+Remember this forever.
+
+---
+
+# B. Pair
+
+---
+
+## Simple Idea
+
+Store two values together.
+
+---
+
+### Real-World Example
+
+Student Record:
+
+```text
+Roll Number + Name
+```
+
+Two related values.
+
+---
+
+### Example
+
+```cpp
+pair<int,string> p;
+
+p.first = 101;
+p.second = "Akshay";
+```
+
+---
+
+### Access
+
+```cpp
+cout << p.first;
+cout << p.second;
+```
+
+---
+
+## Mental Model
+
+```text
+Pair = Two-item box
+```
+
+---
+
+# C. Stack
+
+---
+
+## Simple Idea
+
+Follows:
+
+# LIFO
+
+```text
+Last In First Out
+```
+
+---
+
+## Real-World Example
+
+Stack of plates:
+
+```text
+Plate3
+Plate2
+Plate1
+```
+
+Last plate placed comes out first.
+
+---
+
+### Example
+
+```cpp
+stack<int> st;
+
+st.push(10);
+st.push(20);
+st.push(30);
+```
+
+---
+
+### Visualization
+
+```text
+30 ← top
+20
+10
+```
+
+---
+
+### Remove
+
+```cpp
+st.pop();
+```
+
+Now:
+
+```text
+20 ← top
+10
+```
+
+---
+
+### Access Top
+
+```cpp
+st.top();
+```
+
+---
+
+## Mental Model
+
+```text
+Stack = Plate Stack
+```
+
+---
+
+# D. Queue
+
+---
+
+## Simple Idea
+
+Follows:
+
+# FIFO
+
+```text
+First In First Out
+```
+
+---
+
+## Real-World Example
+
+Movie ticket line.
+
+Person entering first gets served first.
+
+---
+
+### Example
+
+```cpp
+queue<int> q;
+
+q.push(10);
+q.push(20);
+q.push(30);
+```
+
+---
+
+### Visualization
+
+```text
+Front → 10 20 30 ← Rear
+```
+
+---
+
+### Remove
+
+```cpp
+q.pop();
+```
+
+Removes:
+
+```text
+10
+```
+
+---
+
+### Access Front
+
+```cpp
+q.front();
+```
+
+---
+
+## Mental Model
+
+```text
+Queue = Waiting Line
+```
+
+---
+
+# STL Summary
+
+| Container | Real-Life Example |
+| --------- | ----------------- |
+| Vector    | Smart Array       |
+| Pair      | Two-item box      |
+| Stack     | Plate stack       |
+| Queue     | Ticket queue      |
+
+---
+
+# 2️⃣ Time Complexity (MOST IMPORTANT)
+
+---
+
+# Why Time Complexity Exists
+
+Imagine two programs:
+
+Program A:
+
+```text
+1 second
+```
+
+Program B:
+
+```text
+100 seconds
+```
+
+Both give same answer.
+
+Which is better?
+
+Obviously:
+
+```text
+Program A
+```
+
+So we measure efficiency.
+
+---
+
+# What is Time Complexity?
+
+It tells:
+
+```text
+How runtime grows as input grows.
+```
+
+---
+
+# Mental Model
+
+Don't think:
+
+```text
+Exact seconds
+```
+
+Think:
+
+```text
+Growth rate
+```
+
+---
+
+# Example 1
+
+```cpp
+for(int i=0; i<n; i++)
+{
+    cout << i;
+}
+```
+
+Runs n times.
+
+Time Complexity:
+
+```text
+O(n)
+```
+
+Read as:
+
+```text
+Order of n
+```
+
+---
+
+# Example 2
+
+```cpp
+for(int i=0; i<n; i++)
+{
+    for(int j=0; j<n; j++)
+    {
+        cout << i;
+    }
+}
+```
+
+Runs:
+
+```text
+n × n
+```
+
+Complexity:
+
+```text
+O(n²)
+```
+
+---
+
+# Visualization
+
+If:
+
+```text
+n = 10
+```
+
+Then:
+
+```text
+100 operations
+```
+
+If:
+
+```text
+n = 100
+```
+
+Then:
+
+```text
+10000 operations
+```
+
+Growth becomes huge.
+
+---
+
+# Most Important Complexities
+
+| Complexity | Meaning   |
+| ---------- | --------- |
+| O(1)       | Constant  |
+| O(log n)   | Very fast |
+| O(n)       | Linear    |
+| O(n log n) | Efficient |
+| O(n²)      | Slow      |
+| O(2ⁿ)      | Very slow |
+
+---
+
+# Real-World Analogy
+
+Finding a student in class.
+
+### O(1)
+
+Teacher points directly.
+
+```text
+Instant
+```
+
+---
+
+### O(n)
+
+Check students one by one.
+
+---
+
+### O(log n)
+
+Class sorted by roll number.
+
+Keep dividing search area.
+
+Very fast.
+
+---
+
+# Why Interviewers Care
+
+Companies don't want code that works only for:
+
+```text
+n = 10
+```
+
+They want code that works for:
+
+```text
+n = 10,00,000
+```
+
+Efficiently.
+
+---
+
+# Shortcut for Placements 🔥
+
+### Single Loop
+
+```cpp
+for(...)
+```
+
+👉 O(n)
+
+---
+
+### Nested Loop
+
+```cpp
+for(...)
+{
+    for(...)
+}
+```
+
+👉 O(n²)
+
+---
+
+### Divide by 2 Every Time
+
+```cpp
+while(n)
+{
+    n /= 2;
+}
+```
+
+👉 O(log n)
+
+---
+
+# How to Remember Forever
+
+Think:
+
+```text
+Time Complexity = Growth of work
+```
+
+NOT
+
+```text
+Actual seconds
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+```cpp
+vector<int> v;
+
+v.push_back(10);
+v.push_back(20);
+
+cout << v[1];
+```
+
+Output?
+
+---
+
+### Q2
+
+```cpp
+for(int i=0; i<n; i++)
+{
+    cout << i;
+}
+```
+
+Time Complexity?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### STL
+
+* Vector → Smart Array
+* Pair → Two values together
+* Stack → LIFO
+* Queue → FIFO
+
+### Time Complexity
+
+* Measures growth of work
+* Helps write efficient code
+* Crucial for coding rounds
+
+---
+
+# 🚀 Placement Insight
+
+If you master:
+
+* STL
+* Time Complexity
+
+You can solve nearly all beginner and intermediate coding-round questions.
+
+---
