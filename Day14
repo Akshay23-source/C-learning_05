@@ -1,0 +1,603 @@
+# 📅 Day 14 – C++ Placement Fundamentals
+
+Today we connect **Arrays → Vectors → Iterators**.
+
+This is important because almost every coding-round solution you see online uses **vectors and iterators**.
+
+Topics:
+1️⃣ Arrays vs Vectors
+2️⃣ Iterators (`begin()`, `end()`)
+
+---
+
+# 1️⃣ Arrays vs Vectors
+
+---
+
+# First Understand the Problem
+
+Suppose you want to store student marks.
+
+You write:
+
+```cpp
+int marks[5];
+```
+
+Looks fine.
+
+But what if later you need:
+
+```text
+10 students
+50 students
+1000 students
+```
+
+Array size is fixed.
+
+Problem ❌
+
+---
+
+# Array
+
+## Simple Idea
+
+Array = Fixed-size collection of same type data.
+
+Example:
+
+```cpp
+int arr[5] = {10,20,30,40,50};
+```
+
+Memory:
+
+```text
+Index:  0   1   2   3   4
+Value: 10  20  30  40  50
+```
+
+---
+
+## Why Arrays Are Fast
+
+Array elements are stored continuously.
+
+```text
+100 104 108 112 116
+```
+
+(assuming 4-byte integers)
+
+Computer can jump directly to any index.
+
+---
+
+## Mental Model
+
+```text
+Array = Apartment with fixed rooms
+```
+
+If apartment has 5 rooms:
+
+```text
+Room 1
+Room 2
+Room 3
+Room 4
+Room 5
+```
+
+Cannot suddenly create Room 6.
+
+---
+
+# Problem with Arrays
+
+Suppose:
+
+```cpp
+int arr[5];
+```
+
+Later:
+
+```text
+Need 6th element
+```
+
+Impossible.
+
+---
+
+# Vector
+
+---
+
+## Simple Idea
+
+Vector = Dynamic Array
+
+Example:
+
+```cpp
+vector<int> v;
+```
+
+Initially:
+
+```text
+Empty
+```
+
+Add values:
+
+```cpp
+v.push_back(10);
+v.push_back(20);
+v.push_back(30);
+```
+
+Now:
+
+```text
+10 20 30
+```
+
+---
+
+# Why Vector Is Powerful
+
+When full:
+
+```text
+10 20 30
+```
+
+Vector automatically creates larger memory.
+
+Copies old elements.
+
+Continues growing.
+
+---
+
+# Mental Model
+
+```text
+Vector = Expandable Apartment
+```
+
+Need more rooms?
+
+Create bigger building automatically.
+
+---
+
+# Most Important Operations
+
+---
+
+## Add Element
+
+```cpp
+v.push_back(50);
+```
+
+---
+
+## Remove Last Element
+
+```cpp
+v.pop_back();
+```
+
+---
+
+## Size
+
+```cpp
+v.size();
+```
+
+---
+
+## Access
+
+```cpp
+v[0]
+v[1]
+```
+
+---
+
+# Array vs Vector
+
+| Feature            | Array     | Vector     |
+| ------------------ | --------- | ---------- |
+| Size               | Fixed     | Dynamic    |
+| Memory             | Static    | Dynamic    |
+| STL Support        | No        | Yes        |
+| Easy Growth        | No        | Yes        |
+| Used in Interviews | Sometimes | Very Often |
+
+---
+
+# Placement Tip 🔥
+
+In coding rounds:
+
+```text
+Use vector unless fixed-size array is specifically needed.
+```
+
+Most professional C++ code uses vectors.
+
+---
+
+# How to Remember Forever
+
+```text
+Array = Fixed Box
+
+Vector = Growing Box
+```
+
+---
+
+# 2️⃣ Iterators (`begin()` and `end()`)
+
+This is where many students get confused.
+
+Let's make it simple.
+
+---
+
+# First Understand the Problem
+
+Suppose:
+
+```cpp
+vector<int> v = {10,20,30,40};
+```
+
+How do we move through all elements?
+
+We need a way to travel.
+
+---
+
+# Mental Model
+
+Think:
+
+```text
+Iterator = Bookmark / Pointer for STL
+```
+
+It tells:
+
+```text
+Current position inside container
+```
+
+---
+
+# Example
+
+```cpp
+vector<int> v = {10,20,30};
+
+vector<int>::iterator it;
+```
+
+---
+
+## What is `it`?
+
+Think:
+
+```text
+it = traveler
+```
+
+moving through vector.
+
+---
+
+# begin()
+
+```cpp
+v.begin()
+```
+
+Returns iterator to first element.
+
+Visualization:
+
+```text
+10 20 30
+↑
+it
+```
+
+---
+
+# end()
+
+```cpp
+v.end()
+```
+
+Returns iterator AFTER last element.
+
+Visualization:
+
+```text
+10 20 30
+         ↑
+      end()
+```
+
+Notice:
+
+```text
+Not on 30
+After 30
+```
+
+Very important.
+
+---
+
+# Access Value
+
+```cpp
+auto it = v.begin();
+
+cout << *it;
+```
+
+Output:
+
+```text
+10
+```
+
+---
+
+# Why `*it`?
+
+Remember pointers?
+
+Iterator behaves similar to pointer.
+
+```cpp
+*it
+```
+
+means:
+
+```text
+Value at current position
+```
+
+---
+
+# Move Forward
+
+```cpp
+it++;
+```
+
+Now:
+
+```text
+10 20 30
+   ↑
+```
+
+---
+
+# Example Traversal
+
+```cpp
+for(auto it = v.begin();
+    it != v.end();
+    it++)
+{
+    cout << *it << " ";
+}
+```
+
+Output:
+
+```text
+10 20 30
+```
+
+---
+
+# What Happens Internally?
+
+Start:
+
+```text
+begin()
+```
+
+↓
+
+Visit element
+
+↓
+
+Move next
+
+↓
+
+Repeat
+
+↓
+
+Reach `end()`
+
+↓
+
+Stop
+
+---
+
+# Modern Alternative
+
+Most programmers now use:
+
+```cpp
+for(int x : v)
+{
+    cout << x;
+}
+```
+
+Called:
+
+```text
+Range-Based Loop
+```
+
+But interviewers still ask iterators.
+
+---
+
+# Why Iterators Exist?
+
+Because STL containers differ.
+
+Examples:
+
+```cpp
+vector
+list
+set
+map
+```
+
+Iterator gives one common way to traverse all.
+
+---
+
+# Mental Model
+
+```text
+Iterator = Universal Remote Control
+```
+
+Works with many STL containers.
+
+---
+
+# Connection to Pointers
+
+Remember:
+
+```cpp
+int *p;
+```
+
+Pointer:
+
+```text
+Stores memory location
+```
+
+Iterator:
+
+```text
+Stores container position
+```
+
+Very similar idea.
+
+---
+
+# How to Remember Forever
+
+```text
+begin() → first element
+
+end() → position after last element
+
+iterator → traveler inside container
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+```cpp
+vector<int> v;
+
+v.push_back(10);
+v.push_back(20);
+
+cout << v.size();
+```
+
+Output?
+
+---
+
+### Q2
+
+```cpp
+vector<int> v = {5,10,15};
+
+auto it = v.begin();
+
+cout << *it;
+```
+
+Output?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Arrays
+
+* Fixed size
+* Fast
+* Continuous memory
+
+### Vectors
+
+* Dynamic size
+* Most used in coding interviews
+* Supports STL operations
+
+### Iterators
+
+* Used to traverse containers
+* `begin()` → first element
+* `end()` → after last element
+
+---
+
+# 🚀 Placement Insight
+
+Common interview questions:
+
+* Array vs Vector?
+* Why vector is preferred?
+* What is an iterator?
+* Difference between pointer and iterator?
+* Why does `end()` point after the last element?
+
+If you understand today's lesson, you're now comfortable with the most commonly used STL container.
+
+
