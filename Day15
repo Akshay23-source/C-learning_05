@@ -1,0 +1,668 @@
+
+
+Today you're learning the **most powerful STL containers for coding rounds**.
+
+If you've ever seen solutions involving:
+
+* counting frequencies
+* checking duplicates
+* fast searching
+
+then these containers are usually the reason.
+
+Today's topics:
+
+1️⃣ `map` vs `unordered_map`
+2️⃣ `set` vs `unordered_set`
+
+---
+
+# 1️⃣ `map` and `unordered_map`
+
+---
+
+# First Understand the Problem
+
+Suppose a class has:
+
+```text
+Akshay → 85
+Rahul  → 92
+Ankit  → 78
+```
+
+How do we store this relationship?
+
+Normal array doesn't fit well.
+
+We need:
+
+```text
+Key → Value
+```
+
+Like:
+
+```text
+Name → Marks
+```
+
+That's exactly what a map does.
+
+---
+
+# What is a Map?
+
+👉 A map stores data as:
+
+```text
+Key → Value
+```
+
+Example:
+
+```cpp
+map<string, int> marks;
+```
+
+---
+
+# Real-World Example
+
+Think of a dictionary:
+
+```text
+Word → Meaning
+```
+
+Example:
+
+```text
+Apple → Fruit
+Dog   → Animal
+```
+
+Same concept.
+
+---
+
+# Example
+
+```cpp
+map<string, int> marks;
+
+marks["Akshay"] = 85;
+marks["Rahul"] = 92;
+```
+
+---
+
+# Visualization
+
+```text
+Akshay → 85
+Rahul  → 92
+```
+
+---
+
+# Accessing Data
+
+```cpp
+cout << marks["Akshay"];
+```
+
+Output:
+
+```text
+85
+```
+
+---
+
+# Why Map is Powerful
+
+Without map:
+
+```cpp
+name[0] = "Akshay";
+score[0] = 85;
+```
+
+Messy ❌
+
+With map:
+
+```cpp
+marks["Akshay"] = 85;
+```
+
+Clean ✅
+
+---
+
+# Mental Model
+
+```text
+Map = Dictionary
+```
+
+Key → Value lookup.
+
+---
+
+# Very Important Property
+
+`map` automatically keeps keys sorted.
+
+Example:
+
+```cpp
+marks["Z"];
+marks["A"];
+marks["M"];
+```
+
+Stored as:
+
+```text
+A
+M
+Z
+```
+
+Automatically.
+
+---
+
+# What is `unordered_map`?
+
+Same idea:
+
+```text
+Key → Value
+```
+
+But:
+
+```text
+NOT sorted
+```
+
+---
+
+# Example
+
+```cpp
+unordered_map<string,int> marks;
+```
+
+---
+
+# Why Does It Exist?
+
+Because it's usually faster.
+
+---
+
+# Mental Model
+
+### map
+
+```text
+Organized Library
+```
+
+Books arranged neatly.
+
+Finding is fast.
+
+---
+
+### unordered_map
+
+```text
+Messy Drawer
+```
+
+Not arranged.
+
+But grabbing items is often even faster.
+
+---
+
+# Key Difference
+
+| Feature | map          | unordered_map |
+| ------- | ------------ | ------------- |
+| Sorted  | Yes          | No            |
+| Search  | O(log n)     | O(1) average  |
+| Uses    | Ordered data | Fast lookup   |
+
+---
+
+# Placement Tip 🔥
+
+If question only needs:
+
+```text
+Fast searching/counting
+```
+
+Use:
+
+```cpp
+unordered_map
+```
+
+Most common choice.
+
+---
+
+# Frequency Counting Example
+
+Very important interview pattern.
+
+```cpp
+vector<int> arr = {1,2,1,3,2,1};
+
+unordered_map<int,int> freq;
+
+for(int x : arr)
+{
+    freq[x]++;
+}
+```
+
+Result:
+
+```text
+1 → 3
+2 → 2
+3 → 1
+```
+
+---
+
+# How to Remember
+
+```text
+Map = Dictionary
+
+unordered_map = Faster Dictionary
+```
+
+---
+
+# 2️⃣ `set` and `unordered_set`
+
+---
+
+# First Understand the Problem
+
+Suppose:
+
+```text
+10 20 30 20 10
+```
+
+Need unique values only.
+
+Desired result:
+
+```text
+10 20 30
+```
+
+That's what a set does.
+
+---
+
+# What is a Set?
+
+Stores:
+
+```text
+Unique values only
+```
+
+Duplicates are removed automatically.
+
+---
+
+# Example
+
+```cpp
+set<int> s;
+
+s.insert(10);
+s.insert(20);
+s.insert(10);
+```
+
+Stored:
+
+```text
+10 20
+```
+
+Not:
+
+```text
+10 20 10
+```
+
+---
+
+# Mental Model
+
+Think of:
+
+```text
+College Roll Numbers
+```
+
+Same roll number cannot exist twice.
+
+---
+
+# Visualization
+
+Input:
+
+```text
+10 20 10 30 20
+```
+
+Set:
+
+```text
+10 20 30
+```
+
+---
+
+# Why Set is Useful
+
+Common interview tasks:
+
+* remove duplicates
+* uniqueness checking
+* ordered unique elements
+
+---
+
+# Very Important Property
+
+Like map:
+
+```cpp
+set<int>
+```
+
+keeps values sorted.
+
+---
+
+# Example
+
+Insert:
+
+```text
+50 10 30
+```
+
+Stored:
+
+```text
+10 30 50
+```
+
+---
+
+# What is `unordered_set`?
+
+Stores:
+
+```text
+Unique values
+```
+
+but:
+
+```text
+Not sorted
+```
+
+---
+
+# Example
+
+```cpp
+unordered_set<int> s;
+```
+
+---
+
+# Mental Model
+
+### set
+
+```text
+Sorted Attendance Register
+```
+
+---
+
+### unordered_set
+
+```text
+Quick Attendance Box
+```
+
+Not sorted but fast.
+
+---
+
+# Key Difference
+
+| Feature       | set      | unordered_set |
+| ------------- | -------- | ------------- |
+| Unique values | Yes      | Yes           |
+| Sorted        | Yes      | No            |
+| Search        | O(log n) | O(1) average  |
+
+---
+
+# Common Coding Pattern
+
+Check duplicates.
+
+```cpp
+unordered_set<int> seen;
+
+for(int x : arr)
+{
+    if(seen.count(x))
+    {
+        cout << "Duplicate Found";
+    }
+
+    seen.insert(x);
+}
+```
+
+---
+
+# Why Interviewers Love These Containers
+
+Many coding questions become:
+
+```text
+O(n²)
+```
+
+Without them.
+
+But with:
+
+```cpp
+unordered_map
+unordered_set
+```
+
+they become:
+
+```text
+O(n)
+```
+
+Huge improvement.
+
+---
+
+# Mental Shortcut
+
+### Need:
+
+```text
+Key → Value
+```
+
+Use:
+
+```cpp
+map
+unordered_map
+```
+
+---
+
+### Need:
+
+```text
+Unique values
+```
+
+Use:
+
+```cpp
+set
+unordered_set
+```
+
+---
+
+# Quick Comparison
+
+| Container     | Stores        |
+| ------------- | ------------- |
+| map           | Key → Value   |
+| unordered_map | Key → Value   |
+| set           | Unique Values |
+| unordered_set | Unique Values |
+
+---
+
+# Real Placement Example
+
+Question:
+
+```text
+Find frequency of elements
+```
+
+Immediately think:
+
+```cpp
+unordered_map
+```
+
+---
+
+Question:
+
+```text
+Check duplicates
+```
+
+Immediately think:
+
+```cpp
+unordered_set
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+```cpp
+unordered_map<int,int> mp;
+
+mp[5]++;
+mp[5]++;
+
+cout << mp[5];
+```
+
+Output?
+
+---
+
+### Q2
+
+```cpp
+set<int> s;
+
+s.insert(10);
+s.insert(10);
+s.insert(20);
+
+cout << s.size();
+```
+
+Output?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### map
+
+* Key → Value
+* Sorted
+
+### unordered_map
+
+* Key → Value
+* Faster lookup
+
+### set
+
+* Unique values
+* Sorted
+
+### unordered_set
+
+* Unique values
+* Faster lookup
+
+---
+
+# 🚀 Placement Insight
+
+These four containers appear in a huge number of coding-round questions.
+
+Very common interview questions:
+
+* map vs unordered_map?
+* set vs unordered_set?
+* Why use hash maps?
+* How to count frequencies efficiently?
+* How to remove duplicates efficiently?
+
+Mastering today's concepts will dramatically improve your coding-round speed.
+
+
