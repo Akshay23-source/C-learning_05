@@ -1,0 +1,696 @@
+# 📅 Day 17 – C++ Placement Fundamentals
+
+Today we learn a topic that many students fear:
+
+# 🔥 Recursion
+
+The reason students struggle is that they try to memorize it.
+
+We're going to understand it deeply.
+
+Today's topics:
+
+1️⃣ Recursion
+2️⃣ Function Call Stack
+
+---
+
+# 1️⃣ Recursion
+
+---
+
+# First Understand the Big Idea
+
+Recursion means:
+
+👉 A function calls itself.
+
+---
+
+# Real-World Example
+
+Imagine standing between two mirrors.
+
+You see:
+
+```text
+Mirror
+  ↓
+Mirror inside mirror
+  ↓
+Mirror inside mirror
+  ↓
+...
+```
+
+The same image repeats.
+
+That's recursion.
+
+---
+
+# Simple Example
+
+Suppose you want:
+
+```text
+3
+2
+1
+```
+
+---
+
+## Recursive Code
+
+```cpp
+void countDown(int n)
+{
+    if(n == 0)
+        return;
+
+    cout << n << " ";
+
+    countDown(n - 1);
+}
+```
+
+Call:
+
+```cpp
+countDown(3);
+```
+
+Output:
+
+```text
+3 2 1
+```
+
+---
+
+# Why Does It Work?
+
+Let's trace it.
+
+---
+
+### First Call
+
+```cpp
+countDown(3);
+```
+
+Print:
+
+```text
+3
+```
+
+Then calls:
+
+```cpp
+countDown(2);
+```
+
+---
+
+### Second Call
+
+Print:
+
+```text
+2
+```
+
+Then:
+
+```cpp
+countDown(1);
+```
+
+---
+
+### Third Call
+
+Print:
+
+```text
+1
+```
+
+Then:
+
+```cpp
+countDown(0);
+```
+
+---
+
+### Fourth Call
+
+Condition:
+
+```cpp
+if(n == 0)
+```
+
+True.
+
+Function stops.
+
+---
+
+# Mental Model
+
+Think of Russian nesting dolls.
+
+```text
+Big Doll
+  ↓
+Smaller Doll
+  ↓
+Smaller Doll
+  ↓
+Smallest Doll
+```
+
+Each doll contains another version of itself.
+
+---
+
+# Most Important Concept
+
+# Base Case
+
+Without it:
+
+```cpp
+void fun()
+{
+    fun();
+}
+```
+
+Runs forever.
+
+Eventually:
+
+```text
+Stack Overflow
+```
+
+Program crashes.
+
+---
+
+# Mental Model
+
+```text
+Base Case = Emergency Brake
+```
+
+Without brakes:
+
+```text
+Car crashes
+```
+
+Without base case:
+
+```text
+Program crashes
+```
+
+---
+
+# Recursion Structure
+
+Almost every recursive function has:
+
+```text
+1. Base Case
+
+2. Smaller Problem
+```
+
+---
+
+# Example
+
+Factorial
+
+```text
+5!
+=
+5 × 4!
+```
+
+Notice:
+
+```text
+5!
+```
+
+becomes smaller:
+
+```text
+4!
+```
+
+---
+
+# Recursive Code
+
+```cpp
+int fact(int n)
+{
+    if(n == 0)
+        return 1;
+
+    return n * fact(n - 1);
+}
+```
+
+---
+
+# Step-by-Step
+
+```text
+fact(5)
+
+5 × fact(4)
+
+5 × 4 × fact(3)
+
+5 × 4 × 3 × fact(2)
+
+5 × 4 × 3 × 2 × fact(1)
+
+5 × 4 × 3 × 2 × 1 × fact(0)
+
+Base Case
+```
+
+---
+
+Result:
+
+```text
+120
+```
+
+---
+
+# Why Interviewers Ask Recursion
+
+Because it tests:
+
+* problem decomposition
+* logical thinking
+* understanding of memory
+
+---
+
+# How to Remember Forever
+
+Think:
+
+```text
+Recursion
+=
+Solve smaller version of same problem
+```
+
+---
+
+# 2️⃣ Function Call Stack
+
+Now let's understand:
+
+👉 Where recursion actually lives.
+
+---
+
+# Recall Memory Layout
+
+Previously we learned:
+
+```text
+Code Segment
+Data Segment
+Heap
+Stack
+```
+
+Functions use:
+
+# Stack Memory
+
+---
+
+# Real-World Example
+
+Think of a stack of plates.
+
+```text
+Plate 3
+Plate 2
+Plate 1
+```
+
+Last plate added:
+
+```text
+Comes out first
+```
+
+LIFO.
+
+---
+
+# Function Calls Work Exactly Like This
+
+Example:
+
+```cpp
+fun1()
+{
+    fun2();
+}
+```
+
+---
+
+### Step 1
+
+Call:
+
+```cpp
+fun1();
+```
+
+Stack:
+
+```text
+fun1
+```
+
+---
+
+### Step 2
+
+fun1 calls:
+
+```cpp
+fun2();
+```
+
+Stack:
+
+```text
+fun2
+fun1
+```
+
+---
+
+### Step 3
+
+fun2 finishes.
+
+Removed.
+
+Stack:
+
+```text
+fun1
+```
+
+---
+
+### Step 4
+
+fun1 finishes.
+
+Stack empty.
+
+---
+
+# Mental Model
+
+```text
+Function Call Stack
+=
+To-Do Pile
+```
+
+Latest task always on top.
+
+---
+
+# Recursion + Call Stack
+
+Example:
+
+```cpp
+countDown(3);
+```
+
+---
+
+### Stack
+
+```text
+countDown(3)
+```
+
+Calls:
+
+```text
+countDown(2)
+countDown(3)
+```
+
+Calls:
+
+```text
+countDown(1)
+countDown(2)
+countDown(3)
+```
+
+Calls:
+
+```text
+countDown(0)
+countDown(1)
+countDown(2)
+countDown(3)
+```
+
+---
+
+Base case reached.
+
+Now functions return.
+
+---
+
+Stack becomes:
+
+```text
+countDown(1)
+countDown(2)
+countDown(3)
+```
+
+↓
+
+```text
+countDown(2)
+countDown(3)
+```
+
+↓
+
+```text
+countDown(3)
+```
+
+↓
+
+```text
+Empty
+```
+
+---
+
+# Why Stack Overflow Happens
+
+Suppose:
+
+```cpp
+void fun()
+{
+    fun();
+}
+```
+
+No base case.
+
+Stack grows:
+
+```text
+fun
+fun
+fun
+fun
+fun
+fun
+...
+```
+
+Memory fills.
+
+Crash.
+
+---
+
+# Interview Question 🔥
+
+### Why is recursion memory expensive?
+
+Because every call stores:
+
+```text
+Parameters
+Local Variables
+Return Address
+```
+
+inside stack memory.
+
+---
+
+# Recursion vs Loop
+
+---
+
+### Loop
+
+```cpp
+for(int i=0;i<n;i++)
+```
+
+Uses very little memory.
+
+---
+
+### Recursion
+
+```cpp
+fun(n)
+```
+
+Creates new stack frame each call.
+
+Uses more memory.
+
+---
+
+# Mental Shortcut
+
+Use recursion when:
+
+```text
+Problem naturally breaks into smaller versions of itself
+```
+
+Examples:
+
+* Trees
+* Backtracking
+* Divide & Conquer
+* DFS
+
+---
+
+# 🔥 Mini Practice
+
+## Q1
+
+What is the base case?
+
+```cpp
+int fact(int n)
+{
+    if(n == 0)
+        return 1;
+
+    return n * fact(n-1);
+}
+```
+
+---
+
+## Q2
+
+Output?
+
+```cpp
+void fun(int n)
+{
+    if(n == 0)
+        return;
+
+    cout << n << " ";
+
+    fun(n-1);
+}
+
+fun(3);
+```
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Recursion
+
+* Function calls itself
+* Must have base case
+* Solves smaller version of same problem
+
+### Function Call Stack
+
+* Stores active function calls
+* Uses stack memory
+* Follows LIFO
+
+### Stack Overflow
+
+* Too many recursive calls
+* Usually caused by missing base case
+
+---
+
+# 🚀 Placement Insight
+
+Very common interview questions:
+
+* What is recursion?
+* Why do we need a base case?
+* What is stack overflow?
+* How does recursion use memory?
+* Recursion vs iteration?
+
+Understanding today's lesson is crucial because recursion is the foundation for:
+
+* Trees
+* Graphs
+* Backtracking
+* Dynamic Programming
+
+---
+
