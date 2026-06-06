@@ -1,0 +1,666 @@
+# 📅 Day 19 – C++ Placement Fundamentals
+
+Today you are entering **Data Structures**, which are the foundation of coding interviews.
+
+Most students memorize:
+
+```text
+Linked List = Nodes connected by pointers
+```
+
+and forget it after a week.
+
+Today we'll understand **why Linked Lists exist**, so you never forget them.
+
+---
+
+# 1️⃣ Linked Lists — Why Do We Need Them?
+
+---
+
+# First Understand the Problem with Arrays
+
+Suppose:
+
+```cpp
+int arr[5] = {10,20,30,40,50};
+```
+
+Memory:
+
+```text
+10 20 30 40 50
+```
+
+looks great.
+
+---
+
+# But What If We Insert 25?
+
+Need:
+
+```text
+10 20 25 30 40 50
+```
+
+Problem:
+
+```text
+30 40 50
+```
+
+must shift.
+
+---
+
+# Visualization
+
+Before:
+
+```text
+10 20 30 40 50
+```
+
+After inserting 25:
+
+```text
+10 20 25 30 40 50
+```
+
+Everything after 20 moves.
+
+---
+
+# For Small Data
+
+No issue.
+
+---
+
+# For Huge Data
+
+Imagine:
+
+```text
+10,00,000 elements
+```
+
+Shifting becomes expensive.
+
+---
+
+# Problem #2
+
+Suppose array size is:
+
+```cpp
+int arr[100];
+```
+
+But later you need:
+
+```text
+101 elements
+```
+
+Array cannot grow naturally.
+
+---
+
+# So We Need Something Better
+
+Requirements:
+
+✅ Dynamic size
+
+✅ Easy insertion
+
+✅ Easy deletion
+
+This led to:
+
+# Linked Lists
+
+---
+
+# Mental Model
+
+Think of a treasure hunt.
+
+Each clue says:
+
+```text
+Go to next location
+```
+
+You don't need all clues in one place.
+
+Each clue knows where the next clue is.
+
+That's a linked list.
+
+---
+
+# What is a Node?
+
+A linked list is built from nodes.
+
+Each node contains:
+
+```text
+Data
++
+Address of Next Node
+```
+
+---
+
+# Example Node
+
+```cpp
+class Node
+{
+public:
+
+    int data;
+    Node* next;
+};
+```
+
+---
+
+# Why `next`?
+
+Because nodes can be anywhere in memory.
+
+Unlike arrays.
+
+---
+
+# Visualization
+
+Suppose:
+
+```text
+10 → 20 → 30
+```
+
+Memory might be:
+
+```text
+Address 100 : 10
+Address 500 : 20
+Address 900 : 30
+```
+
+Not continuous!
+
+---
+
+# Node Structure
+
+```text
++------+------+
+| 10   | 500  |
++------+------+
+```
+
+Means:
+
+```text
+Data = 10
+
+Next node at address 500
+```
+
+---
+
+# Mental Model
+
+```text
+Node = House
+
+next = Address of next house
+```
+
+---
+
+# First Node = Head
+
+Linked list starts with:
+
+```text
+Head Pointer
+```
+
+Example:
+
+```text
+head
+ ↓
+10 → 20 → 30
+```
+
+---
+
+# Why Head Matters
+
+Without head:
+
+```text
+You lose entire list
+```
+
+Because first node is the entry point.
+
+---
+
+# Creating a Node
+
+```cpp
+Node* head = new Node();
+
+head->data = 10;
+head->next = nullptr;
+```
+
+---
+
+# Why `nullptr`?
+
+Because:
+
+```text
+No next node exists
+```
+
+---
+
+# Visualization
+
+```text
+10 → NULL
+```
+
+---
+
+# Insertion at Beginning
+
+Interview favorite.
+
+---
+
+Before:
+
+```text
+10 → 20 → 30
+```
+
+Need:
+
+```text
+5 → 10 → 20 → 30
+```
+
+---
+
+# Steps
+
+Create new node:
+
+```text
+5
+```
+
+Make it point to old head:
+
+```text
+5 → 10
+```
+
+Update head:
+
+```text
+head = newNode
+```
+
+Done.
+
+---
+
+# Why Linked List Is Good Here
+
+No shifting.
+
+Just change pointers.
+
+---
+
+# Array vs Linked List
+
+---
+
+## Insert at Front
+
+Array:
+
+```text
+Shift everything
+```
+
+Expensive.
+
+---
+
+Linked List:
+
+```text
+Change one pointer
+```
+
+Fast.
+
+---
+
+# Deletion Example
+
+Delete:
+
+```text
+20
+```
+
+From:
+
+```text
+10 → 20 → 30
+```
+
+---
+
+Simply change:
+
+```text
+10 → 30
+```
+
+No shifting.
+
+---
+
+# Time Complexity Insight
+
+Array insertion at front:
+
+```text
+O(n)
+```
+
+Linked list insertion at front:
+
+```text
+O(1)
+```
+
+Huge difference.
+
+---
+
+# Why Linked Lists Use Pointers
+
+Without pointers:
+
+```text
+Node wouldn't know where next node lives.
+```
+
+Pointers create the connection.
+
+---
+
+# How to Remember Forever
+
+```text
+Array
+=
+People sitting in fixed seats
+
+Linked List
+=
+People holding directions to next person
+```
+
+---
+
+# 2️⃣ Traversing a Linked List
+
+Now let's learn how to move through it.
+
+---
+
+# Problem
+
+Suppose:
+
+```text
+10 → 20 → 30 → NULL
+```
+
+Need to print everything.
+
+---
+
+# Solution
+
+Start from head.
+
+Keep following next pointers.
+
+---
+
+# Code
+
+```cpp
+Node* temp = head;
+
+while(temp != nullptr)
+{
+    cout << temp->data << " ";
+
+    temp = temp->next;
+}
+```
+
+---
+
+# Dry Run
+
+Start:
+
+```text
+temp = 10
+```
+
+Print:
+
+```text
+10
+```
+
+Move:
+
+```text
+temp = next
+```
+
+Now:
+
+```text
+20
+```
+
+Print:
+
+```text
+20
+```
+
+Move:
+
+```text
+30
+```
+
+Print:
+
+```text
+30
+```
+
+Move:
+
+```text
+NULL
+```
+
+Stop.
+
+---
+
+# Mental Model
+
+Think of Instagram stories.
+
+You view:
+
+```text
+Story 1
+↓
+Story 2
+↓
+Story 3
+```
+
+Each story knows the next one.
+
+Same idea.
+
+---
+
+# Common Interview Questions
+
+### Why Linked List over Array?
+
+Answer:
+
+```text
+Dynamic size
+Fast insertion/deletion
+```
+
+---
+
+### Why use pointers?
+
+Answer:
+
+```text
+To connect nodes together
+```
+
+---
+
+### What is Head?
+
+Answer:
+
+```text
+Pointer to first node
+```
+
+---
+
+# Quick Comparison
+
+| Feature       | Array      | Linked List    |
+| ------------- | ---------- | -------------- |
+| Memory        | Continuous | Non-continuous |
+| Size          | Fixed      | Dynamic        |
+| Insert Front  | O(n)       | O(1)           |
+| Random Access | O(1)       | O(n)           |
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+In:
+
+```text
+10 → 20 → 30 → NULL
+```
+
+What does the last node's `next` store?
+
+---
+
+### Q2
+
+Why is insertion at front fast in linked lists?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Node
+
+```text
+Data + Next Pointer
+```
+
+---
+
+### Head
+
+```text
+Starting point of list
+```
+
+---
+
+### Linked List
+
+```text
+Connected nodes using pointers
+```
+
+---
+
+### Traversal
+
+```text
+Follow next pointers until NULL
+```
+
+---
+
+# 🚀 Placement Insight
+
+Very common interview questions:
+
+* Array vs Linked List?
+* Why use linked lists?
+* What is a node?
+* What is head?
+* Why pointers are needed?
+
+Today's lesson is important because Linked Lists are the gateway to:
+
+* Stacks
+* Queues
+* Trees
+* Graphs
+* Advanced Data Structures
+
