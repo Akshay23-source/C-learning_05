@@ -1,0 +1,680 @@
+# 📅 Day 20 – C++ Placement Fundamentals
+
+Today you'll learn how Linked Lists evolve into more powerful structures.
+
+Topics:
+
+1️⃣ Doubly Linked Lists
+2️⃣ Stack & Queue Implementation Using Linked Lists
+
+These are very common in technical interviews because they test whether you understand **how data structures are built internally**, not just how to use STL.
+
+---
+
+# 1️⃣ Doubly Linked List (DLL)
+
+---
+
+# First Understand the Limitation of a Singly Linked List
+
+We learned:
+
+```text
+10 → 20 → 30 → NULL
+```
+
+Each node knows only:
+
+```text
+next node
+```
+
+---
+
+## Problem
+
+Suppose you're at:
+
+```text
+30
+```
+
+and want to go back to:
+
+```text
+20
+```
+
+Can you?
+
+❌ No
+
+Because 30 doesn't know where 20 is.
+
+---
+
+# Real-World Example
+
+Think of a road:
+
+```text
+City A → City B → City C
+```
+
+One-way road.
+
+You can move forward only.
+
+---
+
+# Solution → Doubly Linked List
+
+Each node stores:
+
+```text
+Previous Address
++
+Data
++
+Next Address
+```
+
+---
+
+# Node Structure
+
+```cpp
+class Node
+{
+public:
+    int data;
+    Node* prev;
+    Node* next;
+};
+```
+
+---
+
+# Visualization
+
+```text
+NULL ← 10 ⇄ 20 ⇄ 30 → NULL
+```
+
+Notice:
+
+```text
+20 knows:
+- previous = 10
+- next = 30
+```
+
+---
+
+# Mental Model
+
+Think of a train.
+
+Each compartment is connected:
+
+```text
+front connection
++
+back connection
+```
+
+So movement is possible in both directions.
+
+---
+
+# Why DLL Exists
+
+Because some applications need:
+
+✅ Forward traversal
+
+✅ Backward traversal
+
+Examples:
+
+* Browser history
+* Music playlist (next/previous)
+* Undo/Redo systems
+
+---
+
+# Browser Example
+
+You visit:
+
+```text
+Google
+↓
+YouTube
+↓
+GitHub
+```
+
+Now press:
+
+```text
+Back
+```
+
+Browser moves using previous links.
+
+Exactly like a doubly linked list.
+
+---
+
+# Traversal
+
+Forward:
+
+```text
+10 → 20 → 30
+```
+
+Backward:
+
+```text
+30 → 20 → 10
+```
+
+---
+
+# Advantage
+
+Easy backward movement.
+
+---
+
+# Disadvantage
+
+Needs extra memory.
+
+Because every node stores:
+
+```text
+prev + next
+```
+
+instead of only:
+
+```text
+next
+```
+
+---
+
+# Comparison
+
+| Singly LL    | Doubly LL       |
+| ------------ | --------------- |
+| next only    | prev + next     |
+| less memory  | more memory     |
+| forward only | both directions |
+
+---
+
+# How to Remember Forever
+
+```text
+Singly LL
+=
+One-way street
+
+Doubly LL
+=
+Two-way street
+```
+
+---
+
+# 2️⃣ Stack & Queue Using Linked Lists
+
+This is a favorite interview topic.
+
+---
+
+# First Understand the Big Idea
+
+We already learned:
+
+### Stack
+
+```text
+LIFO
+Last In First Out
+```
+
+Example:
+
+```text
+Plate Stack
+```
+
+---
+
+### Queue
+
+```text
+FIFO
+First In First Out
+```
+
+Example:
+
+```text
+Ticket Queue
+```
+
+---
+
+Interviewers often ask:
+
+> "Can you implement them using Linked Lists?"
+
+Let's understand WHY.
+
+---
+
+# A. Stack Using Linked List
+
+---
+
+# Stack Operations
+
+Need:
+
+```text
+push()
+pop()
+top()
+```
+
+---
+
+# Key Idea
+
+Use:
+
+```text
+Head = Top of Stack
+```
+
+---
+
+# Example
+
+Initially:
+
+```text
+NULL
+```
+
+---
+
+Push 10:
+
+```text
+10 → NULL
+```
+
+---
+
+Push 20:
+
+```text
+20 → 10 → NULL
+```
+
+---
+
+Push 30:
+
+```text
+30 → 20 → 10 → NULL
+```
+
+---
+
+Notice:
+
+Newest element always at head.
+
+Perfect for stack.
+
+---
+
+# Why?
+
+Insertion at head is:
+
+```text
+O(1)
+```
+
+Very fast.
+
+---
+
+# Pop Operation
+
+Current:
+
+```text
+30 → 20 → 10
+```
+
+Pop:
+
+Remove head.
+
+Result:
+
+```text
+20 → 10
+```
+
+Again:
+
+```text
+O(1)
+```
+
+---
+
+# Mental Model
+
+```text
+Stack
+=
+Add/remove from same end
+```
+
+Linked list handles this beautifully.
+
+---
+
+# Stack Complexity
+
+| Operation | Complexity |
+| --------- | ---------- |
+| Push      | O(1)       |
+| Pop       | O(1)       |
+| Top       | O(1)       |
+
+---
+
+# B. Queue Using Linked List
+
+---
+
+# Queue Operations
+
+Need:
+
+```text
+enqueue()
+dequeue()
+```
+
+---
+
+# Key Idea
+
+Maintain:
+
+```text
+Front Pointer
+Rear Pointer
+```
+
+---
+
+# Example
+
+Initially:
+
+```text
+Front = NULL
+Rear  = NULL
+```
+
+---
+
+Enqueue 10:
+
+```text
+Front
+  ↓
+10
+  ↑
+Rear
+```
+
+---
+
+Enqueue 20:
+
+```text
+Front
+ ↓
+10 → 20
+      ↑
+     Rear
+```
+
+---
+
+Enqueue 30:
+
+```text
+Front
+ ↓
+10 → 20 → 30
+           ↑
+          Rear
+```
+
+---
+
+# Dequeue
+
+Remove from front.
+
+After removing 10:
+
+```text
+Front
+ ↓
+20 → 30
+      ↑
+     Rear
+```
+
+---
+
+# Why Two Pointers?
+
+Without rear pointer:
+
+Adding new elements becomes slow.
+
+With rear pointer:
+
+```text
+enqueue = O(1)
+```
+
+---
+
+# Queue Complexity
+
+| Operation | Complexity |
+| --------- | ---------- |
+| Enqueue   | O(1)       |
+| Dequeue   | O(1)       |
+
+---
+
+# Real-World Example
+
+Food delivery orders:
+
+```text
+Order1
+Order2
+Order3
+```
+
+First order placed:
+
+```text
+First order served
+```
+
+Queue behavior.
+
+---
+
+# Why Interviewers Love This Topic
+
+Because it tests:
+
+* Linked Lists
+* Pointers
+* Time Complexity
+* Design Thinking
+
+All together.
+
+---
+
+# Common Interview Questions 🔥
+
+### Why implement Stack using Linked List?
+
+Answer:
+
+```text
+Dynamic size
+O(1) insertion/deletion
+```
+
+---
+
+### Why maintain Rear pointer in Queue?
+
+Answer:
+
+```text
+To make enqueue O(1)
+```
+
+---
+
+### Difference between Stack and Queue?
+
+| Stack               | Queue                    |
+| ------------------- | ------------------------ |
+| LIFO                | FIFO                     |
+| Same end operations | Different end operations |
+
+---
+
+# Mental Models
+
+### Stack
+
+```text
+Pile of Plates
+```
+
+---
+
+### Queue
+
+```text
+People Waiting in Line
+```
+
+---
+
+### DLL
+
+```text
+Browser Back/Forward
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+In a doubly linked list, each node stores:
+
+```text
+?
+Data
+?
+```
+
+Fill the missing parts.
+
+---
+
+### Q2
+
+Stack follows:
+
+A) FIFO
+
+B) LIFO
+
+---
+
+### Q3
+
+Queue follows:
+
+A) FIFO
+
+B) LIFO
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Doubly Linked List
+
+* prev + next pointers
+* move both directions
+
+### Stack using Linked List
+
+* head acts as top
+* push/pop = O(1)
+
+### Queue using Linked List
+
+* front + rear pointers
+* enqueue/dequeue = O(1)
+
+---
+
+# 🚀 Placement Insight
+
+Frequently asked:
+
+* Singly vs Doubly Linked List?
+* Why DLL needs more memory?
+* Implement Stack using Linked List?
+* Implement Queue using Linked List?
+* Why maintain front and rear pointers?
+
+These concepts form the foundation for more advanced structures like trees and graphs.
+
+
