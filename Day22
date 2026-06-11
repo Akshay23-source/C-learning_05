@@ -1,0 +1,711 @@
+# 📅 Day 22 – C++ Placement Fundamentals
+
+Today you'll learn one of the most important interview data structures:
+
+# 🌳 Binary Search Tree (BST)
+
+This is where Trees become **useful**, not just hierarchical.
+
+Today's Topics:
+
+1️⃣ Binary Search Tree (BST)
+2️⃣ Why BST Searching is Faster than Linked Lists
+
+---
+
+# 1️⃣ Binary Search Tree (BST)
+
+---
+
+# First Understand the Problem
+
+Suppose we have numbers:
+
+```text
+50 20 70 10 30 60 80
+```
+
+We want:
+
+✅ Fast search
+
+✅ Fast insertion
+
+✅ Organized storage
+
+---
+
+# Recall Arrays
+
+```text
+10 20 30 40 50
+```
+
+Searching can be fast using Binary Search.
+
+But insertion can be expensive.
+
+---
+
+# Recall Linked Lists
+
+Insertion is easy.
+
+But searching is slow.
+
+---
+
+# We want BOTH
+
+```text
+Fast Search
++
+Fast Insert
+```
+
+This leads to BST.
+
+---
+
+# What is a BST?
+
+A BST is a Binary Tree that follows a special rule:
+
+### For every node:
+
+```text
+Left subtree  < Node
+
+Right subtree > Node
+```
+
+This rule is EVERYTHING.
+
+---
+
+# Example
+
+```text
+        50
+       /  \
+     20    70
+    / \    / \
+   10 30 60 80
+```
+
+Check:
+
+For 50:
+
+```text
+Left side:
+10 20 30
+(all smaller)
+
+Right side:
+60 70 80
+(all larger)
+```
+
+Correct BST ✅
+
+---
+
+# Mental Model
+
+Think of a school principal.
+
+Students with smaller roll numbers:
+
+```text
+Go Left
+```
+
+Students with larger roll numbers:
+
+```text
+Go Right
+```
+
+Every node acts like a decision gate.
+
+---
+
+# Why This Rule Matters
+
+Because it allows us to eliminate half the tree while searching.
+
+Exactly like Binary Search.
+
+---
+
+# Searching in BST
+
+Suppose we search:
+
+```text
+60
+```
+
+Tree:
+
+```text
+        50
+       /  \
+     20    70
+    / \    / \
+   10 30 60 80
+```
+
+---
+
+### Step 1
+
+At:
+
+```text
+50
+```
+
+Compare:
+
+```text
+60 > 50
+```
+
+Go right.
+
+Ignore entire left subtree.
+
+---
+
+### Step 2
+
+At:
+
+```text
+70
+```
+
+Compare:
+
+```text
+60 < 70
+```
+
+Go left.
+
+---
+
+### Step 3
+
+At:
+
+```text
+60
+```
+
+Found.
+
+---
+
+# Mental Model
+
+```text
+BST Search
+=
+Playing "Guess My Number"
+```
+
+You continuously eliminate wrong regions.
+
+---
+
+# Why It Is Fast
+
+Every comparison removes roughly half of the remaining possibilities.
+
+Just like Binary Search.
+
+---
+
+# BST Insertion
+
+Suppose tree is:
+
+```text
+      50
+     /  \
+   20    70
+```
+
+Insert:
+
+```text
+60
+```
+
+---
+
+### Step 1
+
+Compare:
+
+```text
+60 > 50
+```
+
+Go right.
+
+---
+
+### Step 2
+
+Compare:
+
+```text
+60 < 70
+```
+
+Go left.
+
+---
+
+### Step 3
+
+Empty spot.
+
+Insert.
+
+---
+
+Result:
+
+```text
+      50
+     /  \
+   20    70
+         /
+       60
+```
+
+---
+
+# Key Insight
+
+Insertion follows the same path as searching.
+
+---
+
+# Important Placement Fact 🔥
+
+### Inorder Traversal of BST
+
+Always produces:
+
+```text
+Sorted Order
+```
+
+Example:
+
+```text
+        50
+       /  \
+     20    70
+    / \    / \
+   10 30 60 80
+```
+
+Inorder:
+
+```text
+10 20 30 50 60 70 80
+```
+
+Sorted.
+
+Interviewers ask this very often.
+
+---
+
+# How to Remember Forever
+
+```text
+BST Rule
+
+Left < Root < Right
+```
+
+Everything comes from this rule.
+
+---
+
+# 2️⃣ Why BST Searching is Faster than Linked Lists
+
+---
+
+# Let's Compare
+
+Suppose we need to find:
+
+```text
+80
+```
+
+---
+
+## Linked List
+
+```text
+10 → 20 → 30 → 40 → 50 → 60 → 70 → 80
+```
+
+---
+
+Must check:
+
+```text
+10
+20
+30
+40
+50
+60
+70
+80
+```
+
+One by one.
+
+---
+
+# Time Complexity
+
+```text
+O(n)
+```
+
+---
+
+# Why?
+
+Because linked lists have no ordering logic.
+
+You cannot skip nodes.
+
+---
+
+# BST
+
+```text
+        50
+       /  \
+     20    70
+    / \    / \
+   10 30 60 80
+```
+
+---
+
+Search 80:
+
+### Compare with 50
+
+Go right.
+
+---
+
+### Compare with 70
+
+Go right.
+
+---
+
+### Found 80
+
+Only 3 comparisons.
+
+---
+
+# Time Complexity
+
+Average:
+
+```text
+O(log n)
+```
+
+Much faster.
+
+---
+
+# Real-World Analogy
+
+### Linked List
+
+Finding a name in an unsorted notebook.
+
+You read line by line.
+
+---
+
+### BST
+
+Finding a word in a dictionary.
+
+You keep narrowing the search.
+
+Much faster.
+
+---
+
+# Why BST Is Powerful
+
+Combines:
+
+### Binary Search Logic
+
+```text
+Fast Search
+```
+
+with
+
+### Tree Structure
+
+```text
+Easy Insert/Delete
+```
+
+---
+
+# When BST Becomes Bad
+
+Interviewers often ask this.
+
+Suppose insertion order:
+
+```text
+10
+20
+30
+40
+50
+```
+
+Tree becomes:
+
+```text
+10
+  \
+   20
+     \
+      30
+        \
+         40
+           \
+            50
+```
+
+Looks like a linked list.
+
+---
+
+# Problem
+
+Searching becomes:
+
+```text
+O(n)
+```
+
+again.
+
+---
+
+# Mental Model
+
+```text
+Balanced BST
+=
+Good
+
+Skewed BST
+=
+Bad
+```
+
+This is why advanced trees like AVL Trees and Red-Black Trees exist.
+
+(We'll learn later.)
+
+---
+
+# Comparison Table
+
+| Feature                | Linked List            | BST               |
+| ---------------------- | ---------------------- | ----------------- |
+| Search                 | O(n)                   | O(log n) average  |
+| Insert                 | O(1) at known position | O(log n) average  |
+| Ordering               | No                     | Yes               |
+| Binary Search Possible | No                     | Yes-like behavior |
+
+---
+
+# Common Interview Questions 🔥
+
+### What is BST Rule?
+
+Answer:
+
+```text
+Left < Root < Right
+```
+
+---
+
+### Inorder Traversal of BST?
+
+Answer:
+
+```text
+Sorted Order
+```
+
+---
+
+### Average Search Complexity?
+
+Answer:
+
+```text
+O(log n)
+```
+
+---
+
+### Worst Case?
+
+Answer:
+
+```text
+O(n)
+```
+
+when tree becomes skewed.
+
+---
+
+# Mental Models to Never Forget
+
+### BST
+
+```text
+Decision Tree
+```
+
+At every node:
+
+```text
+Left or Right?
+```
+
+---
+
+### BST Search
+
+```text
+Guess My Number
+```
+
+Keep eliminating possibilities.
+
+---
+
+### Inorder Traversal
+
+```text
+BST → Sorted Output
+```
+
+---
+
+# 🔥 Mini Practice
+
+Given BST:
+
+```text
+        40
+       /  \
+      20   60
+     / \   / \
+    10 30 50 70
+```
+
+### Q1
+
+Search path for:
+
+```text
+50
+```
+
+---
+
+### Q2
+
+Inorder Traversal?
+
+---
+
+### Q3
+
+BST Rule?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### BST
+
+```text
+Left < Root < Right
+```
+
+---
+
+### Search
+
+```text
+Average O(log n)
+```
+
+---
+
+### Inorder Traversal
+
+```text
+Produces sorted order
+```
+
+---
+
+### Advantage
+
+Fast searching compared to linked lists.
+
+---
+
+# 🚀 Placement Insight
+
+Very frequently asked:
+
+* What is a BST?
+* BST vs Binary Tree?
+* Why BST search is fast?
+* Inorder traversal of BST?
+* Average and worst-case complexity?
+
+Mastering BST is important because many coding interview problems are based on BST traversal, searching, insertion, and recursion.
+
