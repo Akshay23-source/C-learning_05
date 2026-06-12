@@ -1,0 +1,860 @@
+# 📅 Day 23 – C++ Placement Fundamentals
+
+Today you'll learn a data structure that powers:
+
+* CPU Scheduling
+* Dijkstra's Algorithm
+* Job Scheduling
+* Task Managers
+* Coding Interview Problems
+
+# 🔥 Heap & Priority Queue
+
+Many students think:
+
+```text
+Heap = Memory Heap
+```
+
+❌ Wrong.
+
+Today we're talking about the **Heap Data Structure**, not heap memory.
+
+---
+
+# 1️⃣ Heap Data Structure
+
+---
+
+# First Understand the Problem
+
+Suppose you have:
+
+```text
+10 50 20 40 30
+```
+
+And repeatedly need:
+
+```text
+Give me the largest element quickly.
+```
+
+---
+
+# Normal Array
+
+To find largest:
+
+```text
+10 50 20 40 30
+```
+
+Must check everything.
+
+Time:
+
+```text
+O(n)
+```
+
+Slow.
+
+---
+
+# We Want
+
+```text
+Find largest quickly
+
+Insert quickly
+
+Delete quickly
+```
+
+This leads to:
+
+# Heap
+
+---
+
+# Mental Model
+
+Think of a company.
+
+The CEO must always stay at the top.
+
+Everyone else stays below.
+
+Heap follows a similar hierarchy.
+
+---
+
+# What is a Heap?
+
+A Heap is a special Binary Tree.
+
+It follows:
+
+### Max Heap Rule
+
+```text
+Parent ≥ Children
+```
+
+---
+
+# Example
+
+```text
+         50
+       /    \
+      40     30
+     /  \
+    10  20
+```
+
+Check:
+
+```text
+50 > 40
+
+50 > 30
+
+40 > 10
+
+40 > 20
+```
+
+Valid Max Heap ✅
+
+---
+
+# Why It Is Useful
+
+Largest element is always at:
+
+```text
+Root
+```
+
+So finding largest becomes:
+
+```text
+O(1)
+```
+
+Very fast.
+
+---
+
+# Min Heap
+
+Opposite rule.
+
+### Min Heap Rule
+
+```text
+Parent ≤ Children
+```
+
+Example:
+
+```text
+         10
+       /    \
+      20     30
+     / \
+    40 50
+```
+
+Smallest element always at top.
+
+---
+
+# Mental Model
+
+### Max Heap
+
+```text
+Boss on Top
+```
+
+Largest element stays at root.
+
+---
+
+### Min Heap
+
+```text
+Smallest on Top
+```
+
+---
+
+# Heap Is NOT a BST
+
+Very important interview point.
+
+---
+
+### BST Rule
+
+```text
+Left < Root < Right
+```
+
+---
+
+### Heap Rule
+
+```text
+Parent > Children
+```
+
+No left-right ordering requirement.
+
+---
+
+# Example
+
+Valid Max Heap:
+
+```text
+        50
+       /  \
+      20   40
+```
+
+Even though:
+
+```text
+40 > 20
+```
+
+Still valid.
+
+Because heap only cares about:
+
+```text
+Parent vs Child
+```
+
+---
+
+# Why Heap Is Usually Complete
+
+Another interview question.
+
+Heap is generally a:
+
+# Complete Binary Tree
+
+Meaning:
+
+All levels filled except possibly last.
+
+Last level filled left-to-right.
+
+---
+
+Example:
+
+```text
+        50
+       /  \
+      40   30
+     /
+    20
+```
+
+Valid.
+
+---
+
+Example:
+
+```text
+        50
+       /  \
+      40   30
+          /
+         20
+```
+
+Invalid Complete Tree.
+
+---
+
+# Why Complete?
+
+Because it allows efficient storage in arrays.
+
+---
+
+# Array Representation
+
+Heap:
+
+```text
+         50
+       /    \
+      40     30
+     /  \
+    10  20
+```
+
+Stored as:
+
+```text
+[50, 40, 30, 10, 20]
+```
+
+No pointers needed.
+
+---
+
+# Parent & Child Formula
+
+For index:
+
+```text
+i
+```
+
+Parent:
+
+```text
+(i - 1) / 2
+```
+
+---
+
+Left Child:
+
+```text
+2*i + 1
+```
+
+---
+
+Right Child:
+
+```text
+2*i + 2
+```
+
+---
+
+Interviewers sometimes ask this.
+
+Understand, don't memorize blindly.
+
+---
+
+# Heap Operations
+
+---
+
+## Insert
+
+Add element.
+
+Then move it upward if needed.
+
+Called:
+
+# Heapify Up
+
+---
+
+Example
+
+Insert:
+
+```text
+60
+```
+
+Heap:
+
+```text
+         50
+       /    \
+      40     30
+```
+
+Initially:
+
+```text
+         50
+       /    \
+      40     30
+     /
+    60
+```
+
+Violation:
+
+```text
+60 > 40
+```
+
+Swap.
+
+Result:
+
+```text
+         50
+       /    \
+      60     30
+     /
+    40
+```
+
+Still violation:
+
+```text
+60 > 50
+```
+
+Swap again.
+
+Final:
+
+```text
+         60
+       /    \
+      50     30
+     /
+    40
+```
+
+---
+
+# Delete Max
+
+Remove root.
+
+Move last element to root.
+
+Fix heap.
+
+Called:
+
+# Heapify Down
+
+---
+
+# Complexity
+
+Insert:
+
+```text
+O(log n)
+```
+
+Delete:
+
+```text
+O(log n)
+```
+
+Get Max:
+
+```text
+O(1)
+```
+
+---
+
+# How to Remember
+
+```text
+Heap
+
+Top element always special.
+```
+
+---
+
+# 2️⃣ Priority Queue (STL)
+
+Now let's see how C++ gives us heaps directly.
+
+---
+
+# First Understand the Idea
+
+Normal Queue:
+
+```text
+FIFO
+
+First In First Out
+```
+
+---
+
+Example
+
+People:
+
+```text
+A
+B
+C
+```
+
+Served:
+
+```text
+A
+B
+C
+```
+
+---
+
+# But What If Priority Exists?
+
+Hospital:
+
+```text
+Normal Patient
+Critical Patient
+Normal Patient
+```
+
+Critical patient should go first.
+
+---
+
+This is:
+
+# Priority Queue
+
+---
+
+# Mental Model
+
+```text
+Queue + Importance Ranking
+```
+
+---
+
+# STL Syntax
+
+```cpp
+priority_queue<int> pq;
+```
+
+Default:
+
+```text
+Max Heap
+```
+
+Largest element on top.
+
+---
+
+# Example
+
+```cpp
+pq.push(10);
+pq.push(50);
+pq.push(20);
+```
+
+---
+
+Internally:
+
+```text
+50
+20
+10
+```
+
+(top element = 50)
+
+---
+
+# Access Top
+
+```cpp
+cout << pq.top();
+```
+
+Output:
+
+```text
+50
+```
+
+---
+
+# Remove Top
+
+```cpp
+pq.pop();
+```
+
+Now:
+
+```text
+20
+10
+```
+
+---
+
+# Why Coding Interviews Love It
+
+Many problems ask:
+
+```text
+Find largest k elements
+
+Find smallest k elements
+
+Task Scheduling
+
+Top frequent elements
+```
+
+Priority Queue solves these efficiently.
+
+---
+
+# Min Priority Queue
+
+Default is max.
+
+To make min:
+
+```cpp
+priority_queue<
+    int,
+    vector<int>,
+    greater<int>
+> pq;
+```
+
+---
+
+# Mental Model
+
+### Max Priority Queue
+
+```text
+VIP goes first
+```
+
+Largest first.
+
+---
+
+### Min Priority Queue
+
+```text
+Cheapest item first
+```
+
+Smallest first.
+
+---
+
+# Complexity
+
+Push:
+
+```text
+O(log n)
+```
+
+---
+
+Pop:
+
+```text
+O(log n)
+```
+
+---
+
+Top:
+
+```text
+O(1)
+```
+
+---
+
+# Common Interview Questions 🔥
+
+### Difference Between Queue and Priority Queue?
+
+Queue:
+
+```text
+Arrival order
+```
+
+Priority Queue:
+
+```text
+Importance order
+```
+
+---
+
+### Priority Queue Internally Uses?
+
+Answer:
+
+```text
+Heap
+```
+
+---
+
+### Default Priority Queue Type?
+
+Answer:
+
+```text
+Max Heap
+```
+
+---
+
+### Largest Element Location in Max Heap?
+
+Answer:
+
+```text
+Root
+```
+
+---
+
+# Quick Comparison
+
+| Structure      | Top Element      |
+| -------------- | ---------------- |
+| Queue          | First inserted   |
+| Stack          | Last inserted    |
+| Priority Queue | Highest priority |
+
+---
+
+# How to Remember Forever
+
+### Queue
+
+```text
+First Come First Serve
+```
+
+---
+
+### Priority Queue
+
+```text
+Most Important First
+```
+
+---
+
+### Heap
+
+```text
+Parent always dominates children
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+Max Heap Rule?
+
+---
+
+### Q2
+
+Priority Queue internally uses which data structure?
+
+---
+
+### Q3
+
+Output?
+
+```cpp
+priority_queue<int> pq;
+
+pq.push(10);
+pq.push(40);
+pq.push(20);
+
+cout << pq.top();
+```
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Heap
+
+```text
+Special Binary Tree
+
+Parent dominates children
+```
+
+---
+
+### Max Heap
+
+```text
+Largest element at root
+```
+
+---
+
+### Min Heap
+
+```text
+Smallest element at root
+```
+
+---
+
+### Priority Queue
+
+```text
+Heap-based STL container
+
+Highest priority element first
+```
+
+---
+
+# 🚀 Placement Insight
+
+Very common interview questions:
+
+* Heap vs BST?
+* What is a Complete Binary Tree?
+* Why Priority Queue uses Heap?
+* Complexity of push/pop/top?
+* Max Heap vs Min Heap?
+
+Mastering today's concepts will help with many coding-round problems involving top-k elements, scheduling, and optimization.
+
+
