@@ -1,0 +1,382 @@
+# 📅 Day 25 – C++ Placement Fundamentals
+
+Today you will learn **two of the highest-value coding interview patterns**.
+
+Most array and string problems in placements are solved using these.
+
+Topics:
+1️⃣ Two Pointers Technique
+2️⃣ Sliding Window Technique
+
+---
+
+# 1️⃣ Two Pointers Technique
+
+## First Understand the Problem
+
+Suppose you have a sorted array:
+
+```text
+1 2 3 4 6 8 10
+```
+
+Find two numbers whose sum is **10**.
+
+### Brute Force
+
+Check every pair:
+
+```text
+1+2
+1+3
+1+4
+...
+```
+
+Time Complexity:
+
+```text
+O(n²)
+```
+
+Too slow.
+
+---
+
+## Better Idea
+
+Use **two pointers**.
+
+One pointer starts from the left.
+
+One pointer starts from the right.
+
+```text
+L                         R
+1 2 3 4 6 8 10
+```
+
+---
+
+### Step 1
+
+```text
+1 + 10 = 11
+```
+
+Too big.
+
+Move the **right pointer left**.
+
+---
+
+### Step 2
+
+```text
+1 + 8 = 9
+```
+
+Too small.
+
+Move the **left pointer right**.
+
+---
+
+### Step 3
+
+```text
+2 + 8 = 10
+```
+
+Found!
+
+---
+
+# Why Does This Work?
+
+Because the array is **sorted**.
+
+If the sum is:
+
+* Too small → move left pointer right (increase sum).
+* Too large → move right pointer left (decrease sum).
+
+---
+
+# Mental Model
+
+Imagine two friends walking toward each other from opposite ends of a road.
+
+```text
+← Friend A           Friend B →
+```
+
+They keep moving until they meet.
+
+---
+
+# Time Complexity
+
+Instead of:
+
+```text
+O(n²)
+```
+
+We only scan once:
+
+```text
+O(n)
+```
+
+Huge improvement.
+
+---
+
+# Common Uses
+
+* Pair Sum
+* Remove Duplicates
+* Reverse Array
+* Container With Most Water
+* Palindrome Checking
+
+---
+
+# 2️⃣ Sliding Window Technique
+
+---
+
+## First Understand the Problem
+
+Suppose the array is:
+
+```text
+2 1 5 1 3 2
+```
+
+Find the **maximum sum of any 3 consecutive elements**.
+
+---
+
+### Brute Force
+
+Check:
+
+```text
+2+1+5
+1+5+1
+5+1+3
+1+3+2
+```
+
+Works, but repeats calculations.
+
+---
+
+## Better Idea
+
+Think of a window.
+
+Size = 3
+
+First window:
+
+```text
+[2 1 5] 1 3 2
+```
+
+Sum = 8
+
+Now slide it one step.
+
+```text
+2 [1 5 1] 3 2
+```
+
+Instead of recalculating:
+
+Subtract:
+
+```text
+2
+```
+
+Add:
+
+```text
+1
+```
+
+New Sum:
+
+```text
+8 - 2 + 1 = 7
+```
+
+Slide again:
+
+```text
+2 1 [5 1 3] 2
+```
+
+New Sum:
+
+```text
+7 - 1 + 3 = 9
+```
+
+Continue until the end.
+
+---
+
+# Why Does It Work?
+
+Neighboring windows share most elements.
+
+Instead of recomputing everything,
+
+just:
+
+```text
+Remove old element
++
+Add new element
+```
+
+---
+
+# Mental Model
+
+Imagine looking through a train window.
+
+You don't jump to a new train every second.
+
+The same window **slides**, showing new scenery.
+
+---
+
+# Time Complexity
+
+Brute Force:
+
+```text
+O(n × k)
+```
+
+Sliding Window:
+
+```text
+O(n)
+```
+
+---
+
+# Common Uses
+
+* Maximum subarray sum of size K
+* Longest substring
+* Minimum window substring
+* Anagram problems
+* Average of subarrays
+
+---
+
+# Two Pointers vs Sliding Window
+
+| Two Pointers           | Sliding Window                  |
+| ---------------------- | ------------------------------- |
+| Usually two ends       | Usually one moving window       |
+| Often on sorted arrays | Usually on consecutive elements |
+| Finds pairs/positions  | Finds best subarray/substring   |
+
+---
+
+# Interview Clues
+
+If the question says:
+
+> **"Two numbers"**
+
+Think:
+
+```text
+Two Pointers
+```
+
+If the question says:
+
+> **"Contiguous / Consecutive subarray or substring"**
+
+Think:
+
+```text
+Sliding Window
+```
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+Array:
+
+```text
+1 2 4 7 11
+```
+
+Target:
+
+```text
+9
+```
+
+Which technique should you use?
+
+---
+
+### Q2
+
+Find the maximum sum of **5 consecutive elements**.
+
+Which technique?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Two Pointers
+
+* Two indices move based on conditions.
+* Great for sorted arrays.
+* Often reduces **O(n²)** → **O(n)**.
+
+### Sliding Window
+
+* Maintain a moving window.
+* Reuse previous computation.
+* Best for contiguous subarrays/substrings.
+
+---
+
+# 🚀 Placement Insight
+
+These patterns appear in companies like:
+
+* TCS
+* Infosys
+* Cognizant
+* Accenture
+* Amazon
+* Microsoft
+* Google (advanced variations)
+
+When solving coding questions, don't immediately think about syntax. First ask:
+
+1. **Is the array sorted?** → Try **Two Pointers**.
+2. **Is the problem about consecutive elements?** → Try **Sliding Window**.
+
+This habit will dramatically improve your problem-solving speed.
+
+
