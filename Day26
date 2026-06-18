@@ -1,0 +1,767 @@
+# 📅 Day 26 – C++ Placement Fundamentals
+
+Today you'll learn one of the **smartest topics in programming**.
+
+Many interviewers ask bit manipulation questions because they test **how well you understand how computers actually store numbers**.
+
+Today's Topics:
+
+1️⃣ Bit Manipulation Basics (`AND`, `OR`, `XOR`, `NOT`, `Shift`)
+2️⃣ Real Interview Problems Using Bit Manipulation
+
+---
+
+# 1️⃣ Bit Manipulation Basics
+
+---
+
+# First Understand the Big Idea
+
+Everything inside a computer is stored as:
+
+```text
+0 and 1
+```
+
+These are called **bits**.
+
+Example:
+
+```text
+5
+```
+
+Inside the computer:
+
+```text
+0101
+```
+
+Example:
+
+```text
+10
+```
+
+Inside:
+
+```text
+1010
+```
+
+The CPU doesn't see "10".
+
+It only sees:
+
+```text
+1010
+```
+
+---
+
+# Mental Model
+
+Think of a room with light switches.
+
+```text
+0 → Light OFF 💡❌
+
+1 → Light ON 💡✅
+```
+
+A binary number is just a row of ON/OFF switches.
+
+Example:
+
+```text
+1011
+
+ON OFF ON ON
+```
+
+---
+
+# A. AND Operator (`&`)
+
+Rule:
+
+```text
+1 & 1 = 1
+
+Everything else = 0
+```
+
+---
+
+Example
+
+```text
+5 = 0101
+
+3 = 0011
+```
+
+Now compare each bit:
+
+```text
+0101
+
+0011
+
+----
+
+0001
+```
+
+Answer:
+
+```text
+1
+```
+
+---
+
+## Real-Life Analogy
+
+Two friends decide:
+
+> "We'll go to the movie only if BOTH of us are free."
+
+Both must say YES.
+
+That's AND.
+
+---
+
+# How to Remember
+
+```text
+AND = Both must agree.
+```
+
+---
+
+# B. OR Operator (`|`)
+
+Rule:
+
+```text
+If ANY one bit is 1,
+
+Answer is 1.
+```
+
+---
+
+Example
+
+```text
+0101
+
+0011
+
+----
+
+0111
+```
+
+Answer:
+
+```text
+7
+```
+
+---
+
+## Real-Life Analogy
+
+Parents say:
+
+> "If your father OR mother gives permission, you can go."
+
+Only one YES is enough.
+
+---
+
+# C. XOR Operator (`^`) ⭐⭐⭐
+
+This is the **most important bit operator for interviews**.
+
+Rule:
+
+```text
+Same → 0
+
+Different → 1
+```
+
+---
+
+Example
+
+```text
+0101
+
+0011
+
+----
+
+0110
+```
+
+Answer:
+
+```text
+6
+```
+
+---
+
+# The Magic Property of XOR
+
+```text
+A ^ A = 0
+
+A ^ 0 = A
+```
+
+This single property solves many interview questions.
+
+---
+
+## Mental Model
+
+Think of two identical keys.
+
+When you pair them:
+
+```text
+Key + Same Key
+
+Disappear
+```
+
+Only unpaired keys remain.
+
+---
+
+# D. NOT Operator (`~`)
+
+Flips every bit.
+
+```text
+1 → 0
+
+0 → 1
+```
+
+---
+
+Example
+
+```text
+00000101
+```
+
+becomes
+
+```text
+11111010
+```
+
+---
+
+Think of it as:
+
+```text
+ON lights become OFF
+
+OFF lights become ON
+```
+
+---
+
+# E. Shift Operators
+
+---
+
+## Left Shift (`<<`)
+
+Example:
+
+```cpp
+5 << 1
+```
+
+Binary:
+
+```text
+0101
+```
+
+Shift left:
+
+```text
+1010
+```
+
+Answer:
+
+```text
+10
+```
+
+---
+
+### Shortcut
+
+```text
+Left Shift
+
+×
+
+2
+```
+
+Every left shift multiplies by 2.
+
+---
+
+## Right Shift (`>>`)
+
+Example:
+
+```cpp
+8 >> 1
+```
+
+Binary:
+
+```text
+1000
+```
+
+Shift right:
+
+```text
+0100
+```
+
+Answer:
+
+```text
+4
+```
+
+---
+
+### Shortcut
+
+```text
+Right Shift
+
+÷
+
+2
+```
+
+---
+
+# Mental Model
+
+Imagine digits moving on a conveyor belt.
+
+Left:
+
+```text
+Multiply
+```
+
+Right:
+
+```text
+Divide
+```
+
+---
+
+# 2️⃣ Interview Problems Using Bit Manipulation
+
+---
+
+# Problem 1
+
+Find the Unique Element
+
+Array:
+
+```text
+2 1 4 1 2
+```
+
+Every number appears twice except one.
+
+Find it.
+
+---
+
+### Brute Force
+
+Nested loops.
+
+```text
+O(n²)
+```
+
+---
+
+### Smart Solution
+
+Use XOR.
+
+Because:
+
+```text
+1 ^ 1 = 0
+
+2 ^ 2 = 0
+```
+
+Only:
+
+```text
+4
+```
+
+remains.
+
+---
+
+### Dry Run
+
+```text
+2 ^ 1 ^ 4 ^ 1 ^ 2
+
+=
+
+2 ^ 2
+
+^
+
+1 ^ 1
+
+^
+
+4
+
+=
+
+0 ^ 0 ^ 4
+
+=
+
+4
+```
+
+Amazing!
+
+---
+
+# Problem 2
+
+Check if Number is Even
+
+Instead of:
+
+```cpp
+n % 2 == 0
+```
+
+Use:
+
+```cpp
+(n & 1)
+```
+
+---
+
+Why?
+
+Binary:
+
+Even:
+
+```text
+1000
+
+Ends with 0
+```
+
+Odd:
+
+```text
+1001
+
+Ends with 1
+```
+
+So:
+
+```cpp
+n & 1
+```
+
+checks the last bit.
+
+---
+
+# Mental Model
+
+Last switch:
+
+```text
+0
+
+Even
+
+1
+
+Odd
+```
+
+---
+
+# Problem 3
+
+Power of Two
+
+Examples:
+
+```text
+2
+
+4
+
+8
+
+16
+
+32
+```
+
+Binary:
+
+```text
+2 = 0010
+
+4 = 0100
+
+8 = 1000
+```
+
+Notice:
+
+Only ONE bit is ON.
+
+---
+
+Trick:
+
+```cpp
+n & (n-1)
+```
+
+If answer becomes:
+
+```text
+0
+```
+
+Then number is power of two.
+
+---
+
+# Why?
+
+Example:
+
+```text
+8
+
+1000
+```
+
+7:
+
+```text
+0111
+```
+
+AND:
+
+```text
+1000
+
+0111
+
+----
+
+0000
+```
+
+---
+
+# Problem 4
+
+Swap Without Temporary Variable
+
+Normally:
+
+```cpp
+temp = a;
+
+a = b;
+
+b = temp;
+```
+
+Using XOR:
+
+```cpp
+a ^= b;
+
+b ^= a;
+
+a ^= b;
+```
+
+Interviewers sometimes ask this.
+
+(Although using `std::swap()` is preferred in real code.)
+
+---
+
+# Common Interview Questions 🔥
+
+### Why is XOR useful?
+
+Because:
+
+```text
+Same values cancel each other.
+```
+
+---
+
+### Fastest way to check even?
+
+```cpp
+n & 1
+```
+
+---
+
+### Left Shift Means?
+
+```text
+Multiply by 2
+```
+
+---
+
+### Right Shift Means?
+
+```text
+Divide by 2
+```
+
+---
+
+# Quick Summary Table
+
+| Operator | Meaning     | Memory Trick    |            |
+| -------- | ----------- | --------------- | ---------- |
+| `&`      | AND         | Both YES        |            |
+| `        | `           | OR              | Anyone YES |
+| `^`      | XOR         | Different Wins  |            |
+| `~`      | NOT         | Flip Everything |            |
+| `<<`     | Left Shift  | ×2              |            |
+| `>>`     | Right Shift | ÷2              |            |
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+What is:
+
+```text
+5 ^ 5
+```
+
+?
+
+---
+
+### Q2
+
+Output:
+
+```cpp
+8 >> 1
+```
+
+?
+
+---
+
+### Q3
+
+Which operator is commonly used to find the unique element in an array where every other element appears twice?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Bit Manipulation
+
+* Works directly on binary bits.
+* Very fast because CPUs operate on bits natively.
+
+### XOR
+
+* Same → 0
+* Different → 1
+* Excellent for interview problems.
+
+### Shift Operators
+
+* `<<` → Multiply by 2
+* `>>` → Divide by 2
+
+---
+
+# 🚀 Placement Insight
+
+Very common interview questions:
+
+* What is XOR?
+* Why does XOR find the unique element?
+* How do you check if a number is even using bits?
+* How do you check if a number is a power of 2?
+* Difference between `&` and `&&`?
+
+> **Important:** Notice the last question. `&` (bitwise AND) and `&&` (logical AND) are **not the same**. We'll cover that distinction in more detail when we discuss operator behavior in interview questions.
+
+---
+
+# 📌 Next Day ("Today's Learning")
+
+We'll cover:
+
+🔥 **Templates in C++ (Generics)**
+
+🔥 **STL Algorithms** (`find()`, `count()`, `reverse()`, `max_element()`, `min_element()`, `lower_bound()`, `upper_bound()`)
+
+These topics help you write cleaner, shorter, and interview-quality C++ code.
