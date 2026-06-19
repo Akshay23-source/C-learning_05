@@ -1,0 +1,567 @@
+# 📅 Day 27 – C++ Placement Fundamentals
+
+Today you'll learn something that makes C++ powerful and reusable.
+
+Many beginners think templates are "advanced." They're actually a simple idea:
+
+> **"Write the logic once, use it for many data types."**
+
+Today's Topics:
+
+1️⃣ Templates (Generics in C++)
+2️⃣ Most Useful STL Algorithms
+
+---
+
+# 1️⃣ Templates (Generics)
+
+---
+
+# First Understand the Problem
+
+Suppose you write a function to add two integers.
+
+```cpp
+int add(int a, int b)
+{
+    return a + b;
+}
+```
+
+Works for:
+
+```text
+10 + 20
+```
+
+But now you want to add:
+
+```text
+2.5 + 3.5
+```
+
+You need another function:
+
+```cpp
+float add(float a, float b)
+{
+    return a + b;
+}
+```
+
+Now for `double`?
+
+Another function.
+
+For `long long`?
+
+Another function.
+
+This is repetitive.
+
+---
+
+# Solution → Templates
+
+A template says:
+
+> "I don't care what the data type is. Just tell me when you use me."
+
+---
+
+## Example
+
+```cpp
+template <typename T>
+
+T add(T a, T b)
+{
+    return a + b;
+}
+```
+
+Now:
+
+```cpp
+add(10,20);
+```
+
+Compiler thinks:
+
+```cpp
+int add(int,int)
+```
+
+---
+
+And:
+
+```cpp
+add(2.5,3.5);
+```
+
+Compiler creates:
+
+```cpp
+double add(double,double)
+```
+
+Automatically.
+
+---
+
+# Mental Model
+
+Think of a **cake mold**.
+
+The mold is the same.
+
+But you can pour:
+
+* Chocolate batter 🍫
+* Vanilla batter 🍦
+* Strawberry batter 🍓
+
+Same mold.
+
+Different ingredients.
+
+Template = Mold.
+
+Data type = Ingredient.
+
+---
+
+# Why Templates Exist
+
+Without templates:
+
+```text
+Same logic
+Different types
+Lots of repeated code
+```
+
+With templates:
+
+```text
+One logic
+Works for many types
+```
+
+---
+
+# Common Interview Question
+
+### `typename` vs `class`
+
+Both work.
+
+```cpp
+template<typename T>
+```
+
+and
+
+```cpp
+template<class T>
+```
+
+are equivalent in most cases.
+
+---
+
+# 2️⃣ Useful STL Algorithms
+
+These functions save time in coding rounds.
+
+Remember:
+
+**Don't reinvent the wheel.**
+
+---
+
+## A. `find()`
+
+Need to check whether an element exists.
+
+```cpp
+vector<int> v = {10,20,30};
+
+auto it = find(v.begin(), v.end(), 20);
+```
+
+If found:
+
+```text
+Iterator points to 20.
+```
+
+If not:
+
+```cpp
+it == v.end()
+```
+
+---
+
+### Mental Model
+
+Like using **Ctrl + F** in a PDF.
+
+---
+
+## B. `count()`
+
+Count occurrences.
+
+```cpp
+vector<int> v = {1,2,2,3};
+
+count(v.begin(), v.end(), 2);
+```
+
+Answer:
+
+```text
+2
+```
+
+---
+
+### Mental Model
+
+Attendance sheet.
+
+"How many students named Akshay?"
+
+---
+
+## C. `reverse()`
+
+```cpp
+reverse(v.begin(), v.end());
+```
+
+Before:
+
+```text
+1 2 3 4
+```
+
+After:
+
+```text
+4 3 2 1
+```
+
+---
+
+### Mental Model
+
+Reverse a queue of people.
+
+---
+
+## D. `max_element()`
+
+```cpp
+vector<int> v = {5,10,2,9};
+
+auto it = max_element(v.begin(), v.end());
+```
+
+`*it` gives:
+
+```text
+10
+```
+
+---
+
+## E. `min_element()`
+
+Same idea.
+
+```cpp
+*min_element(...)
+```
+
+returns the smallest element.
+
+---
+
+# Mental Model
+
+Teacher finding:
+
+* Highest marks
+* Lowest marks
+
+---
+
+## F. `sort()`
+
+Already learned.
+
+```cpp
+sort(v.begin(), v.end());
+```
+
+Very frequently used.
+
+---
+
+## G. `lower_bound()`
+
+This confuses many students.
+
+Let's understand deeply.
+
+---
+
+Suppose:
+
+```text
+10 20 20 20 30 40
+```
+
+Need:
+
+```text
+20
+```
+
+`lower_bound()` returns:
+
+👉 First position where value is **greater than or equal** to the target.
+
+Result:
+
+```text
+First 20
+```
+
+---
+
+# Mental Model
+
+Imagine people standing in order of height.
+
+You are 170 cm.
+
+`lower_bound()` tells:
+
+> "Stand before the first person who is at least 170 cm."
+
+---
+
+## H. `upper_bound()`
+
+Same array:
+
+```text
+10 20 20 20 30 40
+```
+
+Need:
+
+```text
+20
+```
+
+Returns:
+
+👉 First element **strictly greater** than 20.
+
+Result:
+
+```text
+30
+```
+
+---
+
+# Difference
+
+Array:
+
+```text
+10 20 20 20 30
+```
+
+Target:
+
+```text
+20
+```
+
+Lower Bound:
+
+```text
+      ↓
+10 20 20 20 30
+```
+
+Upper Bound:
+
+```text
+            ↓
+10 20 20 20 30
+```
+
+---
+
+# Placement Trick
+
+Number of occurrences:
+
+```text
+upper_bound - lower_bound
+```
+
+Example:
+
+```text
+20 appears 3 times
+```
+
+---
+
+# Time Complexity
+
+Since these work on sorted arrays:
+
+```text
+O(log n)
+```
+
+---
+
+# Common Interview Questions 🔥
+
+### Why use templates?
+
+Answer:
+
+```text
+To avoid duplicate code for different data types.
+```
+
+---
+
+### What does `find()` return?
+
+```text
+Iterator
+```
+
+---
+
+### Difference between `lower_bound()` and `upper_bound()`?
+
+* `lower_bound()` → first element **≥ target**
+* `upper_bound()` → first element **> target**
+
+---
+
+### Requirement for `lower_bound()`?
+
+```text
+Sorted data
+```
+
+---
+
+# Quick Summary
+
+| Function        | Purpose           |
+| --------------- | ----------------- |
+| `find()`        | Search element    |
+| `count()`       | Count occurrences |
+| `reverse()`     | Reverse container |
+| `sort()`        | Sort elements     |
+| `max_element()` | Largest element   |
+| `min_element()` | Smallest element  |
+| `lower_bound()` | First ≥ target    |
+| `upper_bound()` | First > target    |
+
+---
+
+# 🔥 Mini Practice
+
+### Q1
+
+Array:
+
+```text
+5 10 10 20
+```
+
+Target:
+
+```text
+10
+```
+
+What does `lower_bound()` point to?
+
+---
+
+### Q2
+
+What is:
+
+```cpp
+count(v.begin(), v.end(), 5)
+```
+
+used for?
+
+---
+
+### Q3
+
+Why are templates useful?
+
+---
+
+# 🧠 Today's Core Understanding
+
+### Templates
+
+* Write once.
+* Reuse for many data types.
+* Reduce duplicate code.
+
+### STL Algorithms
+
+* Save coding time.
+* Optimized and interview-friendly.
+* Always prefer them over writing the same logic yourself.
+
+---
+
+# 🚀 Placement Insight
+
+Interviewers often ask:
+
+* What are templates?
+* Why use templates?
+* `lower_bound()` vs `upper_bound()`
+* Difference between `find()` and `binary_search()`
+* When should STL algorithms be preferred?
+
+A strong C++ programmer doesn't just know syntax—they know **which STL tool fits which problem**.
+
+---
+
+# 📌 Next Day ("Today's Learning")
+
+We'll cover:
+
+🔥 **Lambda Functions** (modern C++)
+
+🔥 **Custom Comparators with `sort()`** (used heavily in coding interviews)
+
+These topics will help you read and write modern C++ code seen in competitive programming and product-company interviews.
